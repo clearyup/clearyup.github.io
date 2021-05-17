@@ -116,13 +116,22 @@ git push -u origin master
 最后用户名.github.io访问你的网站
 
 ## 部署到Vercel
-部署到vercel后网站拥有cdn加速,当你用git推送新文章到github仓库,vercel会帮你重新发布新页面,网站刷新后就可以看到新页面的内容
+部署到vercel后网站拥有cdn加速,当你用git推送新文章到github仓库,vercel会帮你重新发布新页面,网站刷新后就可以看到新页面的内容   
+
+这里的仓库建议不设置为`用户名.github.io`这个仓库, 因为这个仓库是`hugo`生成的`public`文件 push 上来的, 没有`config.toml`配置文件, `vercel`不能识别为hugo类型的仓库, 就算你上传 `config.toml`文件到
+`用户名.github.io`这个仓库,还是不能识别
+
+建议新建一个`blogBackup`仓库,将hugo本地网站带有`config.toml`文件的根目录设为`git仓库`,推送到这个 `blogBackup`仓库, 这个是可以被`vercel`识别为hugo类型的仓库
 
 ### 第一步
 注册Vercel账号,直接使用GitHub账号登录就可以了,然后允许访问所有仓库
 
 ### 第二步
-选择`Import Git Repository`，选择`用户名.github.io`这个仓库即可。在`Environment Variables`这里，添加一个变量，`HUGO_VERSION = 0.80.0` 以便正确编译,随后直接部署就可以了
+选择`Import Git Repository`，选择`blogBaskup`这个仓库即可。在`Environment Variables`这里，添加一个变量，`HUGO_VERSION = 0.80.0` 以便正确编译,随后直接部署就可以了
+
+### 第三步
+如果你想自定义域名,在`domain`那里添加你要自定义的域名,更改域名的`dns解析`为`vercel`的就可以了   
+
 
 > 参考视频   
 (https://www.bilibili.com/video/BV147411M7C7)  
@@ -130,7 +139,10 @@ git push -u origin master
 >
 
 ## 添加 .nojekyll 文件 
->避免 github 认为你使用了jekyll构建项目，添加.nojekyll文件到仓库，最好使用谷歌邮箱不要使用qq邮箱
+>避免 github 认为你使用了jekyll构建项目，添加` .nojekyll`文件到`用户名.github.io`仓库, 否则可能受到 build failure 的邮件
+
+## 重构GithubPages
+>主要是删除 `public`文件,使用`hugo -D`重新生成一个新的`public` ,再进行推送, 否则还是会重构失败,`githubpages`会显示`404`
 
 
 

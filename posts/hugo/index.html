@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/hugo\/"
-        },"genre": "posts","keywords": "hugo","wordcount":  1940 ,
+        },"genre": "posts","keywords": "hugo","wordcount":  2318 ,
         "url": "https:\/\/clearyup.github.io\/posts\/hugo\/","datePublished": "2021-04-16T21:32:43+08:00","dateModified": "2021-04-16T21:32:43+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Hugo 建站</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/hugo/"><i class="far fa-folder fa-fw"></i>hugo</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-16">2021-04-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1940 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-16">2021-04-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2318 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -123,9 +123,11 @@
       <ul>
         <li><a href="#第一步">第一步</a></li>
         <li><a href="#第二步">第二步</a></li>
+        <li><a href="#第三步">第三步</a></li>
       </ul>
     </li>
     <li><a href="#添加-nojekyll-文件">添加 .nojekyll 文件</a></li>
+    <li><a href="#重构githubpages">重构GithubPages</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="使用hugo搭建网站">使用hugo搭建网站</h1>
@@ -306,10 +308,15 @@ git push -u origin master
 <p>最后用户名.github.io访问你的网站</p>
 <h2 id="部署到vercel">部署到Vercel</h2>
 <p>部署到vercel后网站拥有cdn加速,当你用git推送新文章到github仓库,vercel会帮你重新发布新页面,网站刷新后就可以看到新页面的内容</p>
+<p>这里的仓库建议不设置为<code>用户名.github.io</code>这个仓库, 因为这个仓库是<code>hugo</code>生成的<code>public</code>文件 push 上来的, 没有<code>config.toml</code>配置文件, <code>vercel</code>不能识别为hugo类型的仓库, 就算你上传 <code>config.toml</code>文件到
+<code>用户名.github.io</code>这个仓库,还是不能识别</p>
+<p>建议新建一个<code>blogBackup</code>仓库,将hugo本地网站带有<code>config.toml</code>文件的根目录设为<code>git仓库</code>,推送到这个 <code>blogBackup</code>仓库, 这个是可以被<code>vercel</code>识别为hugo类型的仓库</p>
 <h3 id="第一步">第一步</h3>
 <p>注册Vercel账号,直接使用GitHub账号登录就可以了,然后允许访问所有仓库</p>
 <h3 id="第二步">第二步</h3>
-<p>选择<code>Import Git Repository</code>，选择<code>用户名.github.io</code>这个仓库即可。在<code>Environment Variables</code>这里，添加一个变量，<code>HUGO_VERSION = 0.80.0</code> 以便正确编译,随后直接部署就可以了</p>
+<p>选择<code>Import Git Repository</code>，选择<code>blogBaskup</code>这个仓库即可。在<code>Environment Variables</code>这里，添加一个变量，<code>HUGO_VERSION = 0.80.0</code> 以便正确编译,随后直接部署就可以了</p>
+<h3 id="第三步">第三步</h3>
+<p>如果你想自定义域名,在<code>domain</code>那里添加你要自定义的域名,更改域名的<code>dns解析</code>为<code>vercel</code>的就可以了</p>
 <blockquote>
 <p>参考视频<br>
 (<a href="https://www.bilibili.com/video/BV147411M7C7">https://www.bilibili.com/video/BV147411M7C7</a>)<br>
@@ -317,7 +324,11 @@ git push -u origin master
 </blockquote>
 <h2 id="添加-nojekyll-文件">添加 .nojekyll 文件</h2>
 <blockquote>
-<p>避免 github 认为你使用了jekyll构建项目，添加.nojekyll文件到仓库，最好使用谷歌邮箱不要使用qq邮箱</p>
+<p>避免 github 认为你使用了jekyll构建项目，添加<code> .nojekyll</code>文件到<code>用户名.github.io</code>仓库, 否则可能受到 build failure 的邮件</p>
+</blockquote>
+<h2 id="重构githubpages">重构GithubPages</h2>
+<blockquote>
+<p>主要是删除 <code>public</code>文件,使用<code>hugo -D</code>重新生成一个新的<code>public</code> ,再进行推送, 否则还是会重构失败,<code>githubpages</code>会显示<code>404</code></p>
 </blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
