@@ -132,17 +132,18 @@ git push -u origin master
 ### 第三步
 如果你想自定义域名,在`domain`那里添加你要自定义的域名,更改域名的`dns解析`为`vercel`的就可以了   
 
-
-> 参考视频   
-(https://www.bilibili.com/video/BV147411M7C7)  
-(https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1)
->
-
 ## 添加 .nojekyll 文件 
 >避免 github 认为你使用了jekyll构建项目，添加` .nojekyll`文件到`用户名.github.io`仓库, 否则可能受到 build failure 的邮件
 
 ## 重构GithubPages
->主要是删除 `public`文件,使用`hugo -D`重新生成一个新的`public` ,再进行推送, 否则还是会重构失败,`githubpages`会显示`404`
+>主要是删除 `public`文件,使用`hugo -D`重新生成一个新的`public` ,再进行推送, 否则还是会重构失败,`githubpages`会显示`404`   
+
+
+## 参考视频
+> 
+(https://www.bilibili.com/video/BV147411M7C7)  
+(https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1)
+>
 
 
 

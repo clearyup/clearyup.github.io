@@ -128,6 +128,7 @@
     </li>
     <li><a href="#添加-nojekyll-文件">添加 .nojekyll 文件</a></li>
     <li><a href="#重构githubpages">重构GithubPages</a></li>
+    <li><a href="#参考视频">参考视频</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="使用hugo搭建网站">使用hugo搭建网站</h1>
@@ -317,11 +318,6 @@ git push -u origin master
 <p>选择<code>Import Git Repository</code>，选择<code>blogBaskup</code>这个仓库即可。在<code>Environment Variables</code>这里，添加一个变量，<code>HUGO_VERSION = 0.80.0</code> 以便正确编译,随后直接部署就可以了</p>
 <h3 id="第三步">第三步</h3>
 <p>如果你想自定义域名,在<code>domain</code>那里添加你要自定义的域名,更改域名的<code>dns解析</code>为<code>vercel</code>的就可以了</p>
-<blockquote>
-<p>参考视频<br>
-(<a href="https://www.bilibili.com/video/BV147411M7C7">https://www.bilibili.com/video/BV147411M7C7</a>)<br>
-(<a href="https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1">https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1</a>)</p>
-</blockquote>
 <h2 id="添加-nojekyll-文件">添加 .nojekyll 文件</h2>
 <blockquote>
 <p>避免 github 认为你使用了jekyll构建项目，添加<code> .nojekyll</code>文件到<code>用户名.github.io</code>仓库, 否则可能受到 build failure 的邮件</p>
@@ -329,6 +325,13 @@ git push -u origin master
 <h2 id="重构githubpages">重构GithubPages</h2>
 <blockquote>
 <p>主要是删除 <code>public</code>文件,使用<code>hugo -D</code>重新生成一个新的<code>public</code> ,再进行推送, 否则还是会重构失败,<code>githubpages</code>会显示<code>404</code></p>
+</blockquote>
+<h2 id="参考视频">参考视频</h2>
+<blockquote>
+</blockquote>
+<p>(<a href="https://www.bilibili.com/video/BV147411M7C7">https://www.bilibili.com/video/BV147411M7C7</a>)<br>
+(<a href="https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1">https://www.bilibili.com/video/BV1q4411i7gL/?spm_id_from=333.788.recommend_more_video.-1</a>)</p>
+<blockquote>
 </blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
