@@ -1,4 +1,4 @@
-# imageai
+# ImageAi
 
 # ImageAi   
 image是一个python库，用于图像预测，对象检测，视频对象检测和视频对象跟踪

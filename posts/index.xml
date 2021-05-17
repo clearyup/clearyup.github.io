@@ -12,7 +12,7 @@
     <guid>https://clearyup.github.io/posts/yolo/</guid>
     <description><![CDATA[YOLO算法 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果]]></description>
 </item><item>
-    <title>Vim</title>
+    <title>Vim宏的使用</title>
     <link>https://clearyup.github.io/posts/vim/</link>
     <pubDate>Fri, 14 May 2021 22:08:48 &#43;0800</pubDate>
     <author>作者</author>
@@ -26,7 +26,7 @@
     <guid>https://clearyup.github.io/posts/flask/</guid>
     <description><![CDATA[flask搭建web应用 应用简介 这是一个目标检测系统,登录成功后,菜单栏有4个功能,图像预测,图像检测,图像分割,视频中的目标检测,主要使用]]></description>
 </item><item>
-    <title>imageai</title>
+    <title>ImageAi</title>
     <link>https://clearyup.github.io/posts/imageai/</link>
     <pubDate>Mon, 03 May 2021 09:02:48 &#43;0800</pubDate>
     <author>作者</author>
