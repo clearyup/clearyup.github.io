@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hugo - 分类 - clear</title>
+        <link>https://clearyup.github.io/categories/hugo/</link>
+        <description>hugo - 分类 - clear</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Fri, 16 Apr 2021 21:32:43 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo 建站</title>
+    <link>https://clearyup.github.io/posts/hugo/</link>
+    <pubDate>Fri, 16 Apr 2021 21:32:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/hugo/</guid>
+    <description><![CDATA[使用hugo搭建网站 首先,这里介绍一下传统的网站搭建,你需要的是 一台服务器(一般是阿里云之类的云服务器,搭载的是Linux系统) 一个开源的网]]></description>
+</item><item>
+    <title>Algolia</title>
+    <link>https://clearyup.github.io/posts/algolia/</link>
+    <pubDate>Tue, 13 Apr 2021 21:28:14 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/algolia/</guid>
+    <description><![CDATA[algolia配置 博客本身支持lunr和algolia两种搜索引擎,为了高性能和网站加载速度我选择algolia lunr无需同步index.]]></description>
+</item></channel>
+</rss>

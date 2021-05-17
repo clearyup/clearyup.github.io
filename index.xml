@@ -1,0 +1,80 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>clear</title>
+        <link>https://clearyup.github.io/</link>
+        <description>hugo blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sun, 16 May 2021 20:57:38 &#43;0800</lastBuildDate>
+            <atom:link href="https://clearyup.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>YOLO</title>
+    <link>https://clearyup.github.io/posts/yolo/</link>
+    <pubDate>Sun, 16 May 2021 20:57:38 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/yolo/</guid>
+    <description><![CDATA[YOLO算法 这是使用地方经济飞碟社]]></description>
+</item><item>
+    <title>Vim</title>
+    <link>https://clearyup.github.io/posts/vim/</link>
+    <pubDate>Fri, 14 May 2021 22:08:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/vim/</guid>
+    <description><![CDATA[vim宏的使用 使用vim的宏可以对单个文件或多个文件进行批量处理，这里记录使用宏的一个样例 我需要更改Annotations文件夹下的1426]]></description>
+</item><item>
+    <title>Flask</title>
+    <link>https://clearyup.github.io/posts/flask/</link>
+    <pubDate>Thu, 13 May 2021 11:27:37 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/flask/</guid>
+    <description><![CDATA[flask搭建web应用 应用简介 这是一个目标检测系统,登录成功后,菜单栏有4个功能,图像预测,图像检测,图像分割,视频中的目标检测,主要使用]]></description>
+</item><item>
+    <title>imageai</title>
+    <link>https://clearyup.github.io/posts/imageai/</link>
+    <pubDate>Mon, 03 May 2021 09:02:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/imageai/</guid>
+    <description><![CDATA[ImageAi image是一个python库，用于图像预测，对象检测，视频对象检测和视频对象跟踪 运行ImageAi winsdows所需环境 Python 3.7.6 , Download Python pip ,]]></description>
+</item><item>
+    <title>FFmpeg安装使用</title>
+    <link>https://clearyup.github.io/posts/ffmpeg/</link>
+    <pubDate>Mon, 26 Apr 2021 20:24:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/ffmpeg/</guid>
+    <description><![CDATA[FFmpeg FFmpeg是一套可以用来记录转换数字音频,视频，并能将其转换为流的开源计算机程序 安装 从github仓库下载FFmpeg 解压后将bin目录]]></description>
+</item><item>
+    <title>英语从句</title>
+    <link>https://clearyup.github.io/posts/subordinate/</link>
+    <pubDate>Fri, 23 Apr 2021 17:59:46 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/subordinate/</guid>
+    <description><![CDATA[英语从句 英语的所有句子都由简单句组成，除单独的简单句外，还能将简单句进行两种组合 并列关系组合（Compound Sentence） 主从关系组合]]></description>
+</item><item>
+    <title>ACID</title>
+    <link>https://clearyup.github.io/posts/acid/</link>
+    <pubDate>Wed, 21 Apr 2021 11:51:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/acid/</guid>
+    <description><![CDATA[数据库的ACID原则 事务 事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系]]></description>
+</item><item>
+    <title>Software</title>
+    <link>https://clearyup.github.io/posts/software/</link>
+    <pubDate>Mon, 19 Apr 2021 17:28:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/software/</guid>
+    <description><![CDATA[常用软件 githubClash,设置自动更新订阅 蓝奏云Clash mixin开启增强模式 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27]]></description>
+</item><item>
+    <title>英语语法框架</title>
+    <link>https://clearyup.github.io/posts/english/</link>
+    <pubDate>Sat, 17 Apr 2021 21:23:11 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/english/</guid>
+    <description><![CDATA[引言 首先我们需要知道,所有的英语语法都是为了造句.而且英语和中文一样,有结构简单的句子也有结构复杂的句子,那么我们到底怎么学语法? 其实所有的]]></description>
+</item><item>
+    <title>Hugo 建站</title>
+    <link>https://clearyup.github.io/posts/hugo/</link>
+    <pubDate>Fri, 16 Apr 2021 21:32:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/hugo/</guid>
+    <description><![CDATA[使用hugo搭建网站 首先,这里介绍一下传统的网站搭建,你需要的是 一台服务器(一般是阿里云之类的云服务器,搭载的是Linux系统) 一个开源的网]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>windows - 分类 - clear</title>
+        <link>https://clearyup.github.io/categories/windows/</link>
+        <description>windows - 分类 - clear</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Mon, 26 Apr 2021 20:24:54 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>FFmpeg安装使用</title>
+    <link>https://clearyup.github.io/posts/ffmpeg/</link>
+    <pubDate>Mon, 26 Apr 2021 20:24:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/ffmpeg/</guid>
+    <description><![CDATA[FFmpeg FFmpeg是一套可以用来记录转换数字音频,视频，并能将其转换为流的开源计算机程序 安装 从github仓库下载FFmpeg 解压后将bin目录]]></description>
+</item><item>
+    <title>Software</title>
+    <link>https://clearyup.github.io/posts/software/</link>
+    <pubDate>Mon, 19 Apr 2021 17:28:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/software/</guid>
+    <description><![CDATA[常用软件 githubClash,设置自动更新订阅 蓝奏云Clash mixin开启增强模式 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>ACID - clear</title><meta name="Description" content="hugo blog"><meta property="og:title" content="ACID" />
+<meta property="og:description" content="数据库的ACID原则 事务 事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://clearyup.github.io/posts/acid/" /><meta property="og:image" content="https://clearyup.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-21T11:51:01&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-21T11:51:01&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://clearyup.github.io/logo.png"/>
+
+<meta name="twitter:title" content="ACID"/>
+<meta name="twitter:description" content="数据库的ACID原则 事务 事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系"/>
+<meta name="application-name" content="clear">
+<meta name="apple-mobile-web-app-title" content="clear"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://clearyup.github.io/posts/acid/" /><link rel="prev" href="https://clearyup.github.io/posts/software/" /><link rel="next" href="https://clearyup.github.io/posts/subordinate/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ACID",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/clearyup.github.io\/posts\/acid\/"
+        },"genre": "posts","keywords": "ACID","wordcount":  1351 ,
+        "url": "https:\/\/clearyup.github.io\/posts\/acid\/","datePublished": "2021-04-21T11:51:01+08:00","dateModified": "2021-04-21T11:51:01+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "@clear"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="clear"><span class="header-title-pre"><i class='fas fa-feather-alt'></i></span>Always like this.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-fw fa-fan fa-spin'></i> 所有文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-bookmark'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fab fa-black-tie'></i> About </a><a class="menu-item" href="https://github.com/clearyup" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="clear"><span class="header-title-pre"><i class='fas fa-feather-alt'></i></span>Always like this.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title=""><i class='fas fa-fw fa-fan fa-spin'></i>所有文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-bookmark'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fab fa-black-tie'></i>About</a><a class="menu-item" href="https://github.com/clearyup" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">ACID</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/database/"><i class="far fa-folder fa-fw"></i>database</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-21">2021-04-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1351 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务">事务</a></li>
+    <li><a href="#aatomicity原子性">A(Atomicity)原子性</a></li>
+    <li><a href="#bconsistency一致性">B(Consistency)一致性</a></li>
+    <li><a href="#cisolation隔离性">C(Isolation)隔离性</a></li>
+    <li><a href="#ddurability持久性">D(Durability)持久性</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="数据库的acid原则">数据库的ACID原则</h1>
+<h2 id="事务">事务</h2>
+<blockquote>
+<p>事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系统本身的需要,<code>事务用来确保不论发生任何情况,数据始终处于一个合理的状态</code></p>
+</blockquote>
+<blockquote>
+<p>事务一般分为三个状态,Active,Commit,Failed</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210036.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210036.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210036.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210036.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210036.png"
+        title="w" /></p>
+<blockquote>
+<p>完整的事务进一步放大看，事物内部还有部分提交这个中间状态，其对外是不可见的</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210119.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210119.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210119.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210119.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422210119.png"
+        title="2" /></p>
+<h2 id="aatomicity原子性">A(Atomicity)原子性</h2>
+<p>原子性,是指全有或者全无原则,事务的所有操作要么全部提交成功,要么全部失败回滚,不可能出现部分失败的情况,因为事务在执行的时候出问题,数据的错误是未知的,将它回滚到执行前的状态便于进行处理</p>
+<blockquote>
+<p>比如<code>A</code>转账给<code>B</code> ,这里<code>A</code>的账户余额要减少,<code>B</code>的账户余额要增加,增加和减少的操作要么都成功,要么都失败,不可能出现成功一个失败一个的情况</p>
+</blockquote>
+<blockquote>
+<p>刚说的是<code>操作</code>,为什么呢?因为这里如果是<code>A</code>转账给<code>B</code> <code>500元</code>,<code>A</code>账户减少	<code>500元</code>,<code>B</code>账户增加<code>300元</code>,这是符合原子性的!但是<code>A</code>减少的金额和<code>B</code>增加的金额并不相等,逻辑上有错误</p>
+</blockquote>
+<p>为此数据库提供另一个原则<code>一致性</code>解决这个问题</p>
+<h2 id="bconsistency一致性">B(Consistency)一致性</h2>
+<p>一致性,是指事务在提交和回滚的变换过程中,数据保持一致性和正确性.</p>
+<p>回到刚刚的问题</p>
+<blockquote>
+<p><code>A</code>转账给<code>B</code> <code>500元</code>,<code>A</code>账户减少 <code>500元</code>,<code>B</code>账户增加<code>300元</code>,符合原子性!</p>
+</blockquote>
+<blockquote>
+<p>一致性不允许数据不一致,因此出现这种情况会回滚到转账前的状态</p>
+</blockquote>
+<p>但是又会有这样的情况</p>
+<blockquote>
+<p><code>A</code>和<code>C</code>同时向<code>B</code>转账<code>100元</code>,<code>B账户</code>原有余额为<code>300元</code>,事务执行之后<code>B</code>的账户应该有<code>500元</code>,但是<code>A</code>和<code>C</code>的事务同时读取<code>B</code>的账户余额,都执行<code>+100</code>,然后都得到<code>400</code>,都写入<code>400</code>,最后<code>B</code>的账户余额是<code>400元</code></p>
+</blockquote>
+<p>这一过程中,原子性符合,一致性也符合,但是数据还是错误,对此我们还需要另一个特性<code>隔离性</code>来约束它</p>
+<h2 id="cisolation隔离性">C(Isolation)隔离性</h2>
+<p>隔离性,一个事务所做的修改在最终提交前,对其他事务是不可见的.可以理解为在排队,前一个事务没有执行完,下一个事务不能操作前一个事务操作的数据.</p>
+<blockquote>
+<p>对于刚刚的问题虽然<code>A</code>和<code>B</code>同时是转账的,但是隔离性会在<code>A</code>转账成功之后再允许<code>C</code>转账,这样数据就不会得到<code>400</code>,而是<code>500</code></p>
+</blockquote>
+<p>满足原子性,一致性,隔离性,数据基本在事务执行前后可以保持一致正确,可要是在事务执行的过程中数据库突然崩溃,服务器突然断电,存储的数据会不会发生改变?这里引入最后一个特性<code>持久性</code></p>
+<h2 id="ddurability持久性">D(Durability)持久性</h2>
+<p>持久性,事务一旦提交,所做的修改就是永久性的.即使发生系统崩溃或者机器宕机等故障,只要数据库可以重新启动,就可以根据事务日志对<code>未持久化</code>的数据进行重新操作</p>
+<blockquote>
+<p>许多数据库通过引入<strong>预写式日志</strong>（Write-ahead logging，缩写 WAL）机制，来保证事务持久性和数据完整性，同时又很大程度上避免了基于事务直接刷新数据的频繁IO对性能的影响。</p>
+</blockquote>
+<blockquote>
+<p>在使用WAL的系统中，所有的修改都先被写入到日志中，然后再被应用到系统状态中。假设一个程序在执行某些操作的过程中机器掉电了。在重新启动时，程序可能需要知道当时执行的操作是成功了还是部分成功或者是失败了。如果使用了WAL，程序就可以检查log文件，并对突然掉电时计划执行的操作内容跟实际上执行的操作内容进行比较。在这个比较的基础上，程序就可以决定是撤销已做的操作还是继续完成已做的操作，或者是保持原样。</p>
+</blockquote>
+<h2 id="总结">总结</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422215203.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422215203.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422215203.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422215203.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210422215203.png"
+        title="2" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/acid/">ACID</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/software/" class="prev" rel="prev" title="Software"><i class="fas fa-angle-left fa-fw"></i>Software</a>
+            <a href="/posts/subordinate/" class="next" rel="next" title="英语从句">英语从句<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="clearyup.github.io" target="_blank">@clear</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"clearyup/clearyup.github.io"}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"RF9CYMTLK8","algoliaIndex":"clearblog","algoliaSearchKey":"135b22fbb7d42fd1262661d2af871d9a","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
