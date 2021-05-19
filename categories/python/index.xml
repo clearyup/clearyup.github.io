@@ -5,12 +5,12 @@
         <description>python - 分类 - clear</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
             <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sun, 16 May 2021 20:57:38 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/python/" rel="self" type="application/rss+xml" /><item>
-    <title>YOLO</title>
+    <title>YOLOv5训练自己的数据集</title>
     <link>https://clearyup.github.io/posts/yolo/</link>
     <pubDate>Sun, 16 May 2021 20:57:38 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/yolo/</guid>
-    <description><![CDATA[YOLO算法 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果]]></description>
+    <description><![CDATA[YOLOv5炼丹 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果 VOC数据集转换为Yolo数据集格式 windows]]></description>
 </item><item>
     <title>Flask</title>
     <link>https://clearyup.github.io/posts/flask/</link>

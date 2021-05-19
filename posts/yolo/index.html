@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>YOLO - clear</title><meta name="Description" content="hugo blog"><meta property="og:title" content="YOLO" />
-<meta property="og:description" content="YOLO算法 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果" />
+        <title>YOLOv5训练自己的数据集 - clear</title><meta name="Description" content="hugo blog"><meta property="og:title" content="YOLOv5训练自己的数据集" />
+<meta property="og:description" content="YOLOv5炼丹 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果 VOC数据集转换为Yolo数据集格式 windows" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://clearyup.github.io/posts/yolo/" /><meta property="og:image" content="https://clearyup.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-16T20:57:38&#43;08:00" />
@@ -15,8 +15,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://clearyup.github.io/logo.png"/>
 
-<meta name="twitter:title" content="YOLO"/>
-<meta name="twitter:description" content="YOLO算法 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果"/>
+<meta name="twitter:title" content="YOLOv5训练自己的数据集"/>
+<meta name="twitter:description" content="YOLOv5炼丹 yolo目标检测算法是you only look once,图片只需要被检测一次就可以出结果 VOC数据集转换为Yolo数据集格式 windows"/>
 <meta name="application-name" content="clear">
 <meta name="apple-mobile-web-app-title" content="clear"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -24,12 +24,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "YOLO",
+        "headline": "YOLOv5训练自己的数据集",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/yolo\/"
-        },"genre": "posts","keywords": "yolo","wordcount":  43 ,
+        },"genre": "posts","keywords": "yolov5","wordcount":  5371 ,
         "url": "https:\/\/clearyup.github.io\/posts\/yolo\/","datePublished": "2021-05-16T20:57:38+08:00","dateModified": "2021-05-16T20:57:38+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,21 +104,1531 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">YOLO</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">YOLOv5训练自己的数据集</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-16">2021-05-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 43 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-16">2021-05-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5371 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><h1 id="yolo算法">YOLO算法</h1>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#voc数据集转换为yolo数据集格式">VOC数据集转换为Yolo数据集格式</a></li>
+    <li><a href="#colab">colab</a>
+      <ul>
+        <li><a href="#下载yolov5源码">下载yolov5源码</a></li>
+        <li><a href="#装载谷歌云盘">装载谷歌云盘</a></li>
+        <li><a href="#创建文件夹">创建文件夹</a></li>
+        <li><a href="#生成训练集测试集验证集目录">生成训练集测试集验证集目录</a></li>
+        <li><a href="#转换标注格式">转换标注格式</a></li>
+        <li><a href="#更改配置文件">更改配置文件</a></li>
+        <li><a href="#开始训练">开始训练</a></li>
+        <li><a href="#训练结果分析">训练结果分析</a></li>
+        <li><a href="#测试模型">测试模型</a></li>
+        <li><a href="#开始预测结果">开始预测结果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="yolov5炼丹">YOLOv5炼丹</h1>
 <blockquote>
 <p>yolo目标检测算法是<code>you only look once</code>,图片只需要被检测一次就可以出结果</p>
 </blockquote>
-</div><div class="post-footer" id="post-footer">
+<h2 id="voc数据集转换为yolo数据集格式">VOC数据集转换为Yolo数据集格式</h2>
+<blockquote>
+<p>windows系统</p>
+</blockquote>
+<ul>
+<li>images 里面存放的是训练图片, labels_voc 里面存放的是 .xml (标签)，labels里面存放的是*.txt(转换后的标签),  classes.names 存放所有分类名字， 每行一个类别</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png"
+        title="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210517220422.png" /></p>
+<ul>
+<li>转换python代码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#coding:utf-8</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
+
+<span class="k">def</span> <span class="nf">xml_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34; Parse a PASCAL VOC xml file &#34;&#34;&#34;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
+        <span class="n">obj_struct</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">obj_struct</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;bndbox&#39;</span><span class="p">)</span>
+        <span class="n">obj_struct</span><span class="p">[</span><span class="s1">&#39;bbox&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;xmin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ymin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;xmax&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+                              <span class="nb">int</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ymax&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)]</span>
+        <span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj_struct</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">objects</span>
+
+
+<span class="k">def</span> <span class="nf">voc2yolo</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">classes_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;classes.names&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()):</span>
+            <span class="n">class_name</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">classes_dict</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
+    
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">objects</span> <span class="o">=</span> <span class="n">xml_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;bbox&#39;</span><span class="p">]</span>
+        <span class="n">class_name</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">classes_dict</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span>
+        <span class="n">cx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span> <span class="o">/</span> <span class="n">width</span>
+        <span class="n">cy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span> <span class="o">/</span> <span class="n">height</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">width</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">height</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%.6f</span><span class="s2"> </span><span class="si">%.6f</span><span class="s2"> </span><span class="si">%.6f</span><span class="s2"> </span><span class="si">%.6f</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="n">txt_name</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;.xml&#34;</span><span class="p">,</span> <span class="s2">&#34;.txt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;labels_voc&#34;</span><span class="p">,</span> <span class="s2">&#34;labels&#34;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt_name</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_image_list</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;JPG&#39;</span><span class="p">,</span> <span class="s1">&#39;JPEG&#39;</span><span class="p">,</span><span class="s1">&#39;png&#39;</span><span class="p">]):</span>
+    <span class="s1">&#39;&#39;&#39;get all image path ends with suffix&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;PATH:</span><span class="si">%s</span><span class="s2"> not exists&#34;</span> <span class="o">%</span> <span class="n">image_dir</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">imglist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">sdirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&#34;data/custom/&#34;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">suffix</span><span class="p">:</span>
+                <span class="n">imglist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">imglist</span>
+
+
+<span class="k">def</span> <span class="nf">imglist2file</span><span class="p">(</span><span class="n">imglist</span><span class="p">):</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">imglist</span><span class="p">)</span>
+    <span class="n">train_list</span> <span class="o">=</span> <span class="n">imglist</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+    <span class="n">valid_list</span> <span class="o">=</span> <span class="n">imglist</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;train.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">train_list</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;valid.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">valid_list</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">xml_path_list</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;labels_voc/*.xml&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">xml_path</span> <span class="ow">in</span> <span class="n">xml_path_list</span><span class="p">:</span>
+        <span class="n">voc2yolo</span><span class="p">(</span><span class="n">xml_path</span><span class="p">)</span>
+
+
+    <span class="n">imglist</span> <span class="o">=</span> <span class="n">get_image_list</span><span class="p">(</span><span class="s2">&#34;images&#34;</span><span class="p">)</span>
+    <span class="n">imglist2file</span><span class="p">(</span><span class="n">imglist</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="colab">colab</h2>
+<blockquote>
+<p>整个训练流程大致是训练你自己的数据集获得权重文件，然后使用权重文件来对你的图片进行预测，输出结果</p>
+</blockquote>
+<h3 id="下载yolov5源码">下载yolov5源码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!git init
+!git clone https://github.com/ultralytics/yolov5.git
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="装载谷歌云盘">装载谷歌云盘</h3>
+<ul>
+<li>
+<p>将你的数据集<code>images.zip</code>和标注集<code>Annotation.zip</code>和<code>yolov5</code>要用到的<code>权重文件</code>上传到谷歌云盘,训练的时候从谷歌云盘加载</p>
+</li>
+<li>
+<p>将这两个压缩包解压到<code>yolov5</code>目录下</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!unzip /content/drive/MyDrive/Annotations.zip -d /content/yolov5/data/
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>解压<code>images.zip</code>之前先删除<code>yolov5/data/images</code>这个文件夹原有的图片</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!rm -rf /content/yolov5/data/images/*
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!unzip /content/drive/MyDrive/images.zip -d /content/yolov5/data/images
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>拷贝权重文件到<code>yolov5</code>的指定目录</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!cp /content/drive/MyDrive/yolov5s.pt  /content/yolov5/weights
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建文件夹">创建文件夹</h3>
+<ul>
+<li>在 yolov5/data 下创建以下几个文件夹 <code>ImageSets</code>, <code>labels</code>, <code>JPEGImages</code></li>
+<li>解压完成所需文件和创建文件夹后的目录结构如下</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png"
+        title="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png" /></p>
+<h3 id="生成训练集测试集验证集目录">生成训练集测试集验证集目录</h3>
+<ul>
+<li>这里我们使用<code>python</code>脚本生成<code>train.txt</code>, <code>test.txt</code>, <code>train.txt</code>, <code>val.txt</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">import os
+import random
+<span class="nv">trainval_percent</span> <span class="o">=</span> 0.1
+<span class="nv">train_percent</span> <span class="o">=</span> 0.9
+<span class="nv">xmlfilepath</span> <span class="o">=</span> <span class="s1">&#39;/content/yolov5/data/Annotations&#39;</span>
+<span class="nv">txtsavepath</span> <span class="o">=</span> <span class="s1">&#39;/content/yolov5/data/ImageSets&#39;</span>
+<span class="nv">total_xml</span> <span class="o">=</span> os.listdir<span class="o">(</span>xmlfilepath<span class="o">)</span>
+<span class="nv">num</span> <span class="o">=</span> len<span class="o">(</span>total_xml<span class="o">)</span>
+<span class="nv">list</span> <span class="o">=</span> range<span class="o">(</span>num<span class="o">)</span>
+<span class="nv">tv</span> <span class="o">=</span> int<span class="o">(</span>num * trainval_percent<span class="o">)</span>
+<span class="nv">tr</span> <span class="o">=</span> int<span class="o">(</span>tv * train_percent<span class="o">)</span>
+<span class="nv">trainval</span> <span class="o">=</span> random.sample<span class="o">(</span>list, tv<span class="o">)</span>
+<span class="nv">train</span> <span class="o">=</span> random.sample<span class="o">(</span>trainval, tr<span class="o">)</span>
+<span class="nv">ftrainval</span> <span class="o">=</span> open<span class="o">(</span><span class="s1">&#39;/content/yolov5/data/ImageSets/trainval.txt&#39;</span>, <span class="s1">&#39;w&#39;</span><span class="o">)</span>
+<span class="nv">ftest</span> <span class="o">=</span> open<span class="o">(</span><span class="s1">&#39;/content/yolov5/data/ImageSets/test.txt&#39;</span>, <span class="s1">&#39;w&#39;</span><span class="o">)</span>
+<span class="nv">ftrain</span> <span class="o">=</span> open<span class="o">(</span><span class="s1">&#39;/content/yolov5/data/ImageSets/train.txt&#39;</span>, <span class="s1">&#39;w&#39;</span><span class="o">)</span>
+<span class="nv">fval</span> <span class="o">=</span> open<span class="o">(</span><span class="s1">&#39;/content/yolov5/data/ImageSets/val.txt&#39;</span>, <span class="s1">&#39;w&#39;</span><span class="o">)</span>
+<span class="k">for</span> i in list:
+    <span class="nv">name</span> <span class="o">=</span> total_xml<span class="o">[</span>i<span class="o">][</span>:-4<span class="o">]</span> + <span class="s1">&#39;\n&#39;</span>
+    <span class="k">if</span> i in trainval:
+        ftrainval.write<span class="o">(</span>name<span class="o">)</span>
+        <span class="k">if</span> i in train:
+            ftest.write<span class="o">(</span>name<span class="o">)</span>
+        <span class="k">else</span>:
+            fval.write<span class="o">(</span>name<span class="o">)</span>
+    <span class="k">else</span>:
+        ftrain.write<span class="o">(</span>name<span class="o">)</span>
+ftrainval.close<span class="o">()</span>
+ftrain.close<span class="o">()</span>
+fval.close<span class="o">()</span>
+ftest.close<span class="o">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="转换标注格式">转换标注格式</h3>
+<ul>
+<li><code>yolov5</code>使用的是<code>.txt</code>格式的标注文件,如果你的标注格式是 类似这种<code>voc 2007</code>的<code>.xml</code>格式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;</span>
+<span class="nt">&lt;annotation&gt;</span>
+	<span class="nt">&lt;folder&gt;</span>Annotation<span class="nt">&lt;/folder&gt;</span>
+	<span class="nt">&lt;filename&gt;</span>IMG_000001.jpg<span class="nt">&lt;/filename&gt;</span>
+	<span class="nt">&lt;path&gt;</span>D:\Annotation\IMG_000001.jpg<span class="nt">&lt;/path&gt;</span>
+	<span class="nt">&lt;source&gt;</span>
+		<span class="nt">&lt;database&gt;</span>Unknown<span class="nt">&lt;/database&gt;</span>
+	<span class="nt">&lt;/source&gt;</span>
+	<span class="nt">&lt;size&gt;</span>
+		<span class="nt">&lt;width&gt;</span>4608<span class="nt">&lt;/width&gt;</span>
+		<span class="nt">&lt;height&gt;</span>2592<span class="nt">&lt;/height&gt;</span>
+		<span class="nt">&lt;depth&gt;</span>3<span class="nt">&lt;/depth&gt;</span>
+	<span class="nt">&lt;/size&gt;</span>
+	<span class="nt">&lt;segmented&gt;</span>0<span class="nt">&lt;/segmented&gt;</span>
+	<span class="nt">&lt;object&gt;</span>
+		<span class="nt">&lt;name&gt;</span>巴黎翠凤蝶<span class="nt">&lt;/name&gt;</span>
+		<span class="nt">&lt;pose&gt;</span>Unspecified<span class="nt">&lt;/pose&gt;</span>
+		<span class="nt">&lt;truncated&gt;</span>0<span class="nt">&lt;/truncated&gt;</span>
+		<span class="nt">&lt;difficult&gt;</span>0<span class="nt">&lt;/difficult&gt;</span>
+		<span class="nt">&lt;bndbox&gt;</span>
+			<span class="nt">&lt;xmin&gt;</span>1992<span class="nt">&lt;/xmin&gt;</span>
+			<span class="nt">&lt;ymin&gt;</span>774<span class="nt">&lt;/ymin&gt;</span>
+			<span class="nt">&lt;xmax&gt;</span>2826<span class="nt">&lt;/xmax&gt;</span>
+			<span class="nt">&lt;ymax&gt;</span>1559<span class="nt">&lt;/ymax&gt;</span>
+		<span class="nt">&lt;/bndbox&gt;</span>
+	<span class="nt">&lt;/object&gt;</span>
+<span class="nt">&lt;/annotation&gt;</span>
+
+ 
+
+
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>你可以使用以下<code>python</code>脚本进行<code>.xml</code>到<code>.txt</code>格式的转换</li>
+<li><code>classes</code> 是数据集的类别</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">as</span> <span class="nn">ET</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span><span class="p">,</span> <span class="n">getcwd</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="n">sets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+<span class="s2">&#34;巴黎翠凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;柑橘凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;玉带凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;碧凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;红基美凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;蓝凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;金裳凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;青凤蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;朴喙蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;密纹飒弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;小黄斑弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;无斑珂弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;直纹稻弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;花弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;隐纹谷弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;绢斑蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;虎斑蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;亮灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;咖灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;大紫琉璃灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;婀灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;曲纹紫灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;波太玄灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;玄灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;红灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;线灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;维纳斯眼灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;艳灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;蓝灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;青海红珠灰蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;古北拟酒眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;阿芬眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;拟稻眉眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;牧女珍眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;白眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;菩萨酒眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;西门珍眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;边纹黛眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;云粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;侏粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;大卫粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;大翅绢粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;山豆粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;橙黄豆粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;突角小粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;箭纹云粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;箭纹绢粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;红襟粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;绢粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;菜粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;镉黄迁粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;黎明豆粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;依帕绢蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;四川绢蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;珍珠绢蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;中环蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;云豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;伊诺小豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;小红蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;扬眉线蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;斐豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;曲斑珠蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;柱菲蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;柳紫闪蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;灿福蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;玄珠带蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;珍蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;琉璃蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;白钩蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;秀蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;绢蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;绿豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;网蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;美眼蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;翠蓝眼蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;老豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;荨麻蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;虬眉带蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;蟾福蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;钩翅眼蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;银斑豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;银豹蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;链环蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;锦瑟蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;黄环蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;黄钩蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;黑网蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;宽边黄粉蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;尖翅翠蛱蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;素弄蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;翠袖锯眼蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;蓝点紫斑蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;蛇目褐蚬蝶&#34;</span><span class="p">,</span>
+
+<span class="s2">&#34;雅弄蝶&#34;</span><span class="p">,</span>
+
+<span class="p">]</span>
+<span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
+    <span class="n">dw</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dh</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">dw</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dw</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">dh</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">dh</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">convert_annotation</span><span class="p">(</span><span class="n">image_id</span><span class="p">):</span>
+    <span class="n">in_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/Annotations/</span><span class="si">%s</span><span class="s1">.xml&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image_id</span><span class="p">))</span>
+    <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/labels/</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image_id</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
+        <span class="n">difficult</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;difficult&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">classes</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">difficult</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">cls_id</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">xmlbox</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;bndbox&#39;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">xmlbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;xmin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">xmlbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;xmax&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">xmlbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ymin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+             <span class="nb">float</span><span class="p">(</span><span class="n">xmlbox</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ymax&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">bb</span> <span class="o">=</span> <span class="n">convert</span><span class="p">((</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cls_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">wd</span> <span class="o">=</span> <span class="n">getcwd</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">image_set</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/labels/&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/labels/&#39;</span><span class="p">)</span>
+    <span class="n">image_ids</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/ImageSets/</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image_set</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">list_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image_set</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_id</span> <span class="ow">in</span> <span class="n">image_ids</span><span class="p">:</span>
+        <span class="n">list_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;/content/yolov5/data/images/</span><span class="si">%s</span><span class="s1">.jpg</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">image_id</span><span class="p">))</span>
+        <span class="n">convert_annotation</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
+    <span class="n">list_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="更改配置文件">更改配置文件</h3>
+<ul>
+<li>新建<code>mytrain.yaml</code>文件,上传到<code>/content/yolov5/data/mytrain.yaml</code></li>
+<li><code>nc</code>是数据集里数据种类, <code>names</code>是类别名</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="l">/content/yolov5/data/train.txt</span><span class="w">
+</span><span class="w"></span><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="l">/content/yolov5/data/val.txt</span><span class="w">
+</span><span class="w"></span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="l">/content/yolov5/data/test.txt</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="m">94</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">names</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;巴黎翠凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;柑橘凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;玉带凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;碧凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;红基美凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;蓝凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;金裳凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;青凤蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;朴喙蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;密纹飒弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;小黄斑弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;无斑珂弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;直纹稻弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;花弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;隐纹谷弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;绢斑蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;虎斑蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;亮灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;咖灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;大紫琉璃灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;婀灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;曲纹紫灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;波太玄灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;玄灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;红灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;线灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;维纳斯眼灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;艳灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;蓝灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;青海红珠灰蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;古北拟酒眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;阿芬眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;拟稻眉眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;牧女珍眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;白眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;菩萨酒眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;西门珍眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;边纹黛眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;云粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;侏粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;大卫粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;大翅绢粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;山豆粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;橙黄豆粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;突角小粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;箭纹云粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;箭纹绢粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;红襟粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;绢粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;菜粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;镉黄迁粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;黎明豆粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;依帕绢蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;四川绢蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;珍珠绢蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;中环蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;云豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;伊诺小豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;小红蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;扬眉线蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;斐豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;曲斑珠蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;柱菲蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;柳紫闪蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;灿福蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;玄珠带蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;珍蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;琉璃蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;白钩蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;秀蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;绢蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;绿豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;网蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;美眼蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;翠蓝眼蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;老豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;荨麻蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;虬眉带蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;蟾福蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;钩翅眼蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;银斑豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;银豹蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;链环蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;锦瑟蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;黄环蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;黄钩蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;黑网蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;宽边黄粉蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;尖翅翠蛱蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;素弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;翠袖锯眼蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;蓝点紫斑蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;蛇目褐蚬蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="s2">&#34;雅弄蝶&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>删除<code>/content/yolov5/train.py</code>,上传更改过的<code>train.py</code></li>
+<li>主要只更改了 <code>nc</code>的值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># parameters</span><span class="w">
+</span><span class="w"></span><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="m">94</span><span class="w">  </span><span class="c"># number of classes</span><span class="w">
+</span><span class="w"></span><span class="nt">depth_multiple</span><span class="p">:</span><span class="w"> </span><span class="m">0.33</span><span class="w">  </span><span class="c"># model depth multiple</span><span class="w">
+</span><span class="w"></span><span class="nt">width_multiple</span><span class="p">:</span><span class="w"> </span><span class="m">0.50</span><span class="w">  </span><span class="c"># layer channel multiple</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># anchors</span><span class="w">
+</span><span class="w"></span><span class="nt">anchors</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="p">[</span><span class="m">10</span><span class="p">,</span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">33</span><span class="p">,</span><span class="m">23</span><span class="p">]</span><span class="w">  </span><span class="c"># P3/8</span><span class="w">
+</span><span class="w">  </span>- <span class="p">[</span><span class="m">30</span><span class="p">,</span><span class="m">61</span><span class="p">,</span><span class="w"> </span><span class="m">62</span><span class="p">,</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="m">59</span><span class="p">,</span><span class="m">119</span><span class="p">]</span><span class="w">  </span><span class="c"># P4/16</span><span class="w">
+</span><span class="w">  </span>- <span class="p">[</span><span class="m">116</span><span class="p">,</span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="m">156</span><span class="p">,</span><span class="m">198</span><span class="p">,</span><span class="w"> </span><span class="m">373</span><span class="p">,</span><span class="m">326</span><span class="p">]</span><span class="w">  </span><span class="c"># P5/32</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># YOLOv5 backbone</span><span class="w">
+</span><span class="w"></span><span class="nt">backbone</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># [from, number, module, args]</span><span class="w">
+</span><span class="w">  </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Focus, [64, 3]], </span><span class="w"> </span><span class="c"># 0-P1/2</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [128, 3, 2]], </span><span class="w"> </span><span class="c"># 1-P2/4</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [128]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [256, 3, 2]], </span><span class="w"> </span><span class="c"># 3-P3/8</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [256]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [512, 3, 2]], </span><span class="w"> </span><span class="c"># 5-P4/16</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [512]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [1024, 3, 2]], </span><span class="w"> </span><span class="c"># 7-P5/32</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">SPP, [1024, [5, 9, 13]]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [1024, False]], </span><span class="w"> </span><span class="c"># 9</span><span class="w">
+</span><span class="w">  </span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># YOLOv5 head</span><span class="w">
+</span><span class="w"></span><span class="nt">head</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [512, 1, 1]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">nn.Upsample, [None, 2, &#39;nearest&#39;]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Concat, [1]], </span><span class="w"> </span><span class="c"># cat backbone P4</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [512, False]], </span><span class="w"> </span><span class="c"># 13</span><span class="w">
+</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [256, 1, 1]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">nn.Upsample, [None, 2, &#39;nearest&#39;]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Concat, [1]], </span><span class="w"> </span><span class="c"># cat backbone P3</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [256, False]], </span><span class="w"> </span><span class="c"># 17 (P3/8-small)</span><span class="w">
+</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [256, 3, 2]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">14</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Concat, [1]], </span><span class="w"> </span><span class="c"># cat head P4</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [512, False]], </span><span class="w"> </span><span class="c"># 20 (P4/16-medium)</span><span class="w">
+</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Conv, [512, 3, 2]],</span><span class="w">
+</span><span class="w">   </span><span class="p">[[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Concat, [1]], </span><span class="w"> </span><span class="c"># cat head P5</span><span class="w">
+</span><span class="w">   </span><span class="p">[</span>-<span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="l">C3, [1024, False]], </span><span class="w"> </span><span class="c"># 23 (P5/32-large)</span><span class="w">
+</span><span class="w">
+</span><span class="w">   </span><span class="p">[[</span><span class="m">17</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="l">Detect, [nc, anchors]], </span><span class="w"> </span><span class="c"># Detect(P3, P4, P5)</span><span class="w">
+</span><span class="w">  </span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>删除<code>/content/yolov5/train.py</code>, 上传你更改过的<code>train.py</code></li>
+<li>主要更改了以下内容
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png"
+        title="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png" /></li>
+</ul>
+<h3 id="开始训练">开始训练</h3>
+<ul>
+<li><code>batch-size</code>是批处理大小, 每批处理的数目, 比如有<code>3200</code>张图片, <code>batch-size</code>设置为<code>32</code>, 那数据会被分成<code>100</code>批, 每批 <code>32</code>张图片进行处理</li>
+<li><code>epochs</code>是将所有的批次图片训练完就是<code>1</code>次<code>epochs</code>, 也叫<code>迭代次数</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/train.py --data mytrain.yaml --cfg yolov5s.yaml --weights weights/yolov5s.pt --epochs <span class="m">100</span> --batch-size <span class="m">16</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="训练结果分析">训练结果分析</h3>
+<ul>
+<li>训练过程的参数如下</li>
+<li><code>P</code>是查准率, <code>R</code>是查全率,  <code>mAp@.5</code>和<code>mAp@.5:.95</code>是用来评估模型的, 这些值越接近<code>1</code>越好, 类似<code>0.994</code>这种就比较好</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png 1.5x, https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png"
+        title="https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519213749.png" /></p>
+<ul>
+<li>训练完成会生成一个<code>run</code>文件,里面的<code>weight</code>文件夹有生成的<code>权重文件</code></li>
+</ul>
+<h3 id="测试模型">测试模型</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">python /content/yolov5/test.py  --data data/mytrain.yaml --weights runs/exp1/weights/best.pt --augment
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="开始预测结果">开始预测结果</h3>
+<ul>
+<li>使用训练好的权重文件<code>best.pt</code>对数据进行预测</li>
+</ul>
+<p>CPU版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/detect.py --weights runs/train/exp3/weights/best.pt --source /content/yolov5/data/images --device cpu --save-txt
+</code></pre></td></tr></table>
+</div>
+</div><p>GPU版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/detect.py --weights runs/train/exp3/weights/best.pt --source /content/yolov5/data/images --device <span class="m">0</span> --save-txt
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -135,7 +1645,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/yolo/">yolo</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/yolov5/">yolov5</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
