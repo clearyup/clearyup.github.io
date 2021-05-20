@@ -720,11 +720,12 @@ head:
 - 删除`/content/yolov5/train.py`, 上传你更改过的`train.py`
 - 主要更改了以下内容
 ![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png)
+- 将生成的结果文件夹路径设置为`谷歌云盘的`, 避免断开连接拿不到训练结果
+![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210520162946.png)
 
 ### 开始训练
 - `batch-size`是批处理大小, 每批处理的数目, 比如有`3200`张图片, `batch-size`设置为`32`, 那数据会被分成`100`批, 每批 `32`张图片进行处理
 - `epochs`是将所有的批次图片训练完就是`1`次`epochs`, 也叫`迭代次数`
-
 
 ```bash
 !python /content/yolov5/train.py --data mytrain.yaml --cfg yolov5s.yaml --weights weights/yolov5s.pt --epochs 100 --batch-size 16
@@ -745,7 +746,6 @@ python /content/yolov5/test.py  --data data/mytrain.yaml --weights runs/exp1/wei
 
 ### 开始预测结果
 - 使用训练好的权重文件`best.pt`对数据进行预测   
-
 
 CPU版本
 ```bash
