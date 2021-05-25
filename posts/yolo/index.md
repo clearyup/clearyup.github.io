@@ -139,7 +139,19 @@ if __name__ == "__main__":
 - 解压完成所需文件和创建文件夹后的目录结构如下
 
 ![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519200848.png)
+### 安装依赖包使用wandb
 
+- 使用在`yolov5`目录下使用命令行安装依赖包
+
+```bash
+!pip install -r requirements.txt wandb
+```
+
+- 使用`wandb`对训练结果可视化,可在线查看损失函数和map函数曲线
+- 需要到`wandb`官网注册一个账号,然后新建一个project
+- 训练的时候选择使用已经存在的账户,点开网址获得`key`值粘贴回车就可以到`wandb`控制台看到实时的训练结果
+
+![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210525162045.png)
 ### 生成训练集测试集验证集目录
 - 这里我们使用`python`脚本生成`train.txt`, `test.txt`, `train.txt`, `val.txt`
 
