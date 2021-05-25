@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/yolo\/"
-        },"genre": "posts","keywords": "yolov5","wordcount":  5404 ,
+        },"genre": "posts","keywords": "yolov5","wordcount":  6862 ,
         "url": "https:\/\/clearyup.github.io\/posts\/yolo\/","datePublished": "2021-05-16T20:57:38+08:00","dateModified": "2021-05-16T20:57:38+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">YOLOv5训练自己的数据集</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-16">2021-05-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5404 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-16">2021-05-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6862 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -1605,13 +1605,16 @@ ftest.close<span class="o">()</span>
 <li>训练完成会生成一个<code>run</code>文件,里面的<code>weight</code>文件夹有生成的<code>权重文件</code></li>
 </ul>
 <h3 id="测试模型">测试模型</h3>
+<ul>
+<li>需要图片指定的是<code>yolov5/data/images</code>目录下, 不然检测不到</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">python /content/yolov5/test.py  --data data/mytrain.yaml --weights runs/exp1/weights/best.pt --augment
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">!python /content/yolov5/test.py   --augment --save-json
 
 </code></pre></td></tr></table>
 </div>
@@ -1619,22 +1622,603 @@ ftest.close<span class="o">()</span>
 <ul>
 <li>使用训练好的权重文件<code>best.pt</code>对数据进行预测</li>
 </ul>
-<p>CPU版本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/detect.py --weights runs/train/exp3/weights/best.pt --source /content/yolov5/data/images --device cpu --save-txt
+<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/detect.py --save-json --save-txt --save-conf --nosave --augment
 </code></pre></td></tr></table>
 </div>
-</div><p>GPU版本</p>
+</div><ul>
+<li>detect.py代码</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">!python /content/yolov5/detect.py --weights runs/train/exp3/weights/best.pt --source /content/yolov5/data/images --device <span class="m">0</span> --save-txt
+<pre class="chroma"><code class="language-python" data-lang="python">
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.backends.cudnn</span> <span class="kn">as</span> <span class="nn">cudnn</span>
+
+<span class="kn">from</span> <span class="nn">models.experimental</span> <span class="kn">import</span> <span class="n">attempt_load</span>
+<span class="kn">from</span> <span class="nn">utils.datasets</span> <span class="kn">import</span> <span class="n">LoadStreams</span><span class="p">,</span> <span class="n">LoadImages</span>
+<span class="kn">from</span> <span class="nn">utils.general</span> <span class="kn">import</span> <span class="n">check_img_size</span><span class="p">,</span> <span class="n">check_requirements</span><span class="p">,</span> <span class="n">check_imshow</span><span class="p">,</span> <span class="n">non_max_suppression</span><span class="p">,</span> <span class="n">apply_classifier</span><span class="p">,</span> \
+    <span class="n">scale_coords</span><span class="p">,</span> <span class="n">xyxy2xywh</span><span class="p">,</span> <span class="n">strip_optimizer</span><span class="p">,</span> <span class="n">set_logging</span><span class="p">,</span> <span class="n">increment_path</span><span class="p">,</span> <span class="n">save_one_box</span>
+<span class="kn">from</span> <span class="nn">utils.plots</span> <span class="kn">import</span> <span class="n">colors</span><span class="p">,</span> <span class="n">plot_one_box</span>
+<span class="kn">from</span> <span class="nn">utils.torch_utils</span> <span class="kn">import</span> <span class="n">select_device</span><span class="p">,</span> <span class="n">load_classifier</span><span class="p">,</span> <span class="n">time_synchronized</span>
+
+
+<span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">opt</span><span class="p">):</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">view_img</span><span class="p">,</span> <span class="n">save_txt</span><span class="p">,</span> <span class="n">imgsz</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">view_img</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_txt</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">img_size</span>
+    <span class="n">save_img</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">opt</span><span class="o">.</span><span class="n">nosave</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">source</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)</span>  <span class="c1"># save inference images</span>
+    <span class="n">webcam</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="ow">or</span> <span class="n">source</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">source</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+        <span class="p">(</span><span class="s1">&#39;rtsp://&#39;</span><span class="p">,</span> <span class="s1">&#39;rtmp://&#39;</span><span class="p">,</span> <span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="s1">&#39;https://&#39;</span><span class="p">))</span>
+
+    <span class="n">save_json</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_json</span>
+    <span class="n">mdict</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Directories</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">increment_path</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">project</span><span class="p">)</span> <span class="o">/</span> <span class="n">opt</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="n">opt</span><span class="o">.</span><span class="n">exist_ok</span><span class="p">)</span>  <span class="c1"># increment run</span>
+    <span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="s1">&#39;labels&#39;</span> <span class="k">if</span> <span class="n">save_txt</span> <span class="k">else</span> <span class="n">save_dir</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># make dir</span>
+
+    <span class="c1"># Initialize</span>
+    <span class="n">set_logging</span><span class="p">()</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">select_device</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s1">&#39;cpu&#39;</span>  <span class="c1"># half precision only supported on CUDA</span>
+
+    <span class="c1"># Load model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">attempt_load</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># load FP32 model</span>
+    <span class="n">stride</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">stride</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>  <span class="c1"># model stride</span>
+    <span class="n">imgsz</span> <span class="o">=</span> <span class="n">check_img_size</span><span class="p">(</span><span class="n">imgsz</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">stride</span><span class="p">)</span>  <span class="c1"># check img_size</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">names</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;module&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">model</span><span class="o">.</span><span class="n">names</span>  <span class="c1"># get class names</span>
+    <span class="k">if</span> <span class="n">half</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">half</span><span class="p">()</span>  <span class="c1"># to FP16</span>
+
+    <span class="c1"># Second-stage classifier</span>
+    <span class="n">classify</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">classify</span><span class="p">:</span>
+        <span class="n">modelc</span> <span class="o">=</span> <span class="n">load_classifier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;resnet101&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># initialize</span>
+        <span class="n">modelc</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;weights/resnet101.pt&#39;</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)[</span><span class="s1">&#39;model&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="c1"># Set Dataloader</span>
+    <span class="n">vid_path</span><span class="p">,</span> <span class="n">vid_writer</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">webcam</span><span class="p">:</span>
+        <span class="n">view_img</span> <span class="o">=</span> <span class="n">check_imshow</span><span class="p">()</span>
+        <span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># set True to speed up constant image size inference</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">LoadStreams</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">img_size</span><span class="o">=</span><span class="n">imgsz</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">LoadImages</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">img_size</span><span class="o">=</span><span class="n">imgsz</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">)</span>
+
+    <span class="c1"># Run inference</span>
+    <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">:</span>
+        <span class="n">model</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">imgsz</span><span class="p">,</span> <span class="n">imgsz</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())))</span>  <span class="c1"># run once</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">im0s</span><span class="p">,</span> <span class="n">vid_cap</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">half</span><span class="p">()</span> <span class="k">if</span> <span class="n">half</span> <span class="k">else</span> <span class="n">img</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>  <span class="c1"># uint8 to fp16/32</span>
+        <span class="n">img</span> <span class="o">/=</span> <span class="mf">255.0</span>  <span class="c1"># 0 - 255 to 0.0 - 1.0</span>
+        <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">ndimension</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Inference</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time_synchronized</span><span class="p">()</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">augment</span><span class="o">=</span><span class="n">opt</span><span class="o">.</span><span class="n">augment</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Apply NMS</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">non_max_suppression</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">conf_thres</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">iou_thres</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">agnostic_nms</span><span class="p">,</span>
+                                   <span class="n">max_det</span><span class="o">=</span><span class="n">opt</span><span class="o">.</span><span class="n">max_det</span><span class="p">)</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time_synchronized</span><span class="p">()</span>
+
+        <span class="c1"># Apply Classifier</span>
+        <span class="k">if</span> <span class="n">classify</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">apply_classifier</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">modelc</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">im0s</span><span class="p">)</span>
+
+        <span class="c1"># Process detections</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">det</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pred</span><span class="p">):</span>  <span class="c1"># detections per image</span>
+            <span class="k">if</span> <span class="n">webcam</span><span class="p">:</span>  <span class="c1"># batch_size &gt;= 1</span>
+                <span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">im0</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="s1">&#39;{i}: &#39;</span><span class="p">,</span> <span class="n">im0s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">dataset</span><span class="o">.</span><span class="n">count</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">im0</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">path</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">im0s</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;frame&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># to Path</span>
+            <span class="n">save_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># img.jpg</span>
+            <span class="n">txt_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="s1">&#39;labels&#39;</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">dataset</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;image&#39;</span> <span class="k">else</span> <span class="n">f</span><span class="s1">&#39;_{frame}&#39;</span><span class="p">)</span>  <span class="c1"># img.txt</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%g</span><span class="s1">x</span><span class="si">%g</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>  <span class="c1"># print string</span>
+            <span class="n">gn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">im0</span><span class="o">.</span><span class="n">shape</span><span class="p">)[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>  <span class="c1"># normalization gain whwh</span>
+            <span class="n">imc</span> <span class="o">=</span> <span class="n">im0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_crop</span> <span class="k">else</span> <span class="n">im0</span>  <span class="c1"># for opt.save_crop</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">det</span><span class="p">):</span>
+                <span class="c1"># Rescale boxes from img_size to im0 size</span>
+                <span class="n">det</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale_coords</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">det</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">im0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+
+                <span class="c1"># Print results</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">det</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+                    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">det</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># detections per class</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;{n} {names[int(c)]}{&#39;s&#39; * (n &gt; 1)}, &#34;</span>  <span class="c1"># add to string</span>
+
+                <span class="c1"># Write results</span>
+                <span class="k">for</span> <span class="o">*</span><span class="n">xyxy</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">det</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">save_txt</span><span class="p">:</span>  <span class="c1"># Write to file</span>
+                        <span class="n">xywh</span> <span class="o">=</span> <span class="p">(</span><span class="n">xyxy2xywh</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">xyxy</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="n">gn</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># normalized xywh</span>
+                        <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">xyxy</span><span class="p">,</span> <span class="n">conf</span><span class="p">)</span> <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_conf</span> <span class="k">else</span> <span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">xywh</span><span class="p">)</span>  <span class="c1"># label format</span>
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">txt_path</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">%g</span><span class="s1"> &#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="o">%</span> <span class="n">line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+ 
+                    
+                    <span class="k">if</span> <span class="n">save_json</span><span class="p">:</span>
+                        <span class="n">myxyxy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">xyxy</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                        <span class="n">img_id</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stem</span>
+                        <span class="n">result_class</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">cls</span><span class="p">))</span>
+                        <span class="n">result_conf</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">conf</span><span class="p">))</span>
+                        <span class="n">content_json</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="n">result_class</span><span class="p">:[[</span>
+                                 <span class="n">img_id</span><span class="p">,</span>
+                                 <span class="n">result_conf</span><span class="p">,</span>
+                                 <span class="n">myxyxy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                 <span class="n">myxyxy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">myxyxy</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                 <span class="n">myxyxy</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                
+                                 <span class="p">]]</span>
+                            <span class="p">}</span>
+                        <span class="n">mdict</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content_json</span><span class="p">)</span>
+                        
+
+                    <span class="k">if</span> <span class="n">save_img</span> <span class="ow">or</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_crop</span> <span class="ow">or</span> <span class="n">view_img</span><span class="p">:</span>  <span class="c1"># Add bbox to image</span>
+                        <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>  <span class="c1"># integer class</span>
+                        <span class="n">label</span> <span class="o">=</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">hide_labels</span> <span class="k">else</span> <span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">hide_conf</span> <span class="k">else</span> <span class="n">f</span><span class="s1">&#39;{names[c]} {conf:.2f}&#39;</span><span class="p">)</span>
+                        <span class="n">plot_one_box</span><span class="p">(</span><span class="n">xyxy</span><span class="p">,</span> <span class="n">im0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span> <span class="n">line_thickness</span><span class="o">=</span><span class="n">opt</span><span class="o">.</span><span class="n">line_thickness</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">save_crop</span><span class="p">:</span>
+                            <span class="n">save_one_box</span><span class="p">(</span><span class="n">xyxy</span><span class="p">,</span> <span class="n">imc</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">save_dir</span> <span class="o">/</span> <span class="s1">&#39;crops&#39;</span> <span class="o">/</span> <span class="n">names</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">/</span> <span class="n">f</span><span class="s1">&#39;{p.stem}.jpg&#39;</span><span class="p">,</span> <span class="n">BGR</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+            <span class="c1"># Print time (inference + NMS)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{s}Done. ({t2 - t1:.3f}s)&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Stream results</span>
+            <span class="k">if</span> <span class="n">view_img</span><span class="p">:</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">im0</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1 millisecond</span>
+
+            <span class="c1"># Save results (image with detections)</span>
+            <span class="k">if</span> <span class="n">save_img</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dataset</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;image&#39;</span><span class="p">:</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">im0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>  <span class="c1"># &#39;video&#39; or &#39;stream&#39;</span>
+                    <span class="k">if</span> <span class="n">vid_path</span> <span class="o">!=</span> <span class="n">save_path</span><span class="p">:</span>  <span class="c1"># new video</span>
+                        <span class="n">vid_path</span> <span class="o">=</span> <span class="n">save_path</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vid_writer</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">):</span>
+                            <span class="n">vid_writer</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># release previous video writer</span>
+                        <span class="k">if</span> <span class="n">vid_cap</span><span class="p">:</span>  <span class="c1"># video</span>
+                            <span class="n">fps</span> <span class="o">=</span> <span class="n">vid_cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
+                            <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">vid_cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">))</span>
+                            <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">vid_cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">))</span>
+                        <span class="k">else</span><span class="p">:</span>  <span class="c1"># stream</span>
+                            <span class="n">fps</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">im0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">im0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="n">save_path</span> <span class="o">+=</span> <span class="s1">&#39;.mp4&#39;</span>
+                        <span class="n">vid_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">&#39;mp4v&#39;</span><span class="p">),</span> <span class="n">fps</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+                    <span class="n">vid_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">im0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_txt</span> <span class="ow">or</span> <span class="n">save_img</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">{len(list(save_dir.glob(&#39;labels/*.txt&#39;)))} labels saved to {save_dir / &#39;labels&#39;}&#34;</span> <span class="k">if</span> <span class="n">save_txt</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Results saved to {save_dir}{s}&#34;</span><span class="p">)</span>
+
+    <span class="c1">#找到属性名</span>
+    <span class="k">def</span> <span class="nf">findname</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">arr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">n</span>
+
+    <span class="c1">#合并</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdict</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">findname</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mdict</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdict</span><span class="p">)):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">findname</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">mdict</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">mdict</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdict</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">mdict</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">p</span><span class="p">]</span>
+            <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="c1">#去重</span>
+    <span class="k">def</span> <span class="nf">noRepeat</span><span class="p">(</span><span class="n">mjson</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mjson</span><span class="p">)):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mjson</span><span class="p">)):</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">findname</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mjson</span><span class="p">)</span> <span class="o">==</span> <span class="n">findname</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">mjson</span><span class="p">)):</span>
+                    <span class="k">del</span><span class="p">(</span><span class="n">mjson</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">noRepeat</span><span class="p">(</span><span class="n">mdict</span><span class="p">)</span>
+
+    <span class="c1">#归并排序</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span><span class="p">:</span>
+            <span class="c1">#if left[0] &lt;= right[0]:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">findname</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">left</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">findname</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">right</span><span class="p">)):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">right</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">left</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">left</span>
+        <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">right</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># When D&amp;C to 1 element, just return it</span>
+            <span class="k">return</span> <span class="n">L</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">L</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+        <span class="c1"># conquer sub-problem recursively</span>
+        <span class="k">return</span> <span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+        <span class="c1"># return the answer of sub-problem</span>
+
+    <span class="n">mjson</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">mdict</span><span class="p">)</span>
+
+    <span class="c1">#消除大括号(一)</span>
+    <span class="k">def</span> <span class="nf">extend</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">source</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
+            <span class="n">target</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">target</span>
+
+    <span class="n">newjson</span> <span class="o">=</span> <span class="n">extend</span><span class="p">(</span><span class="n">mjson</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">mjson</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mjson</span><span class="p">):</span>
+        <span class="n">newjson</span> <span class="o">=</span> <span class="n">extend</span><span class="p">(</span><span class="n">newjson</span><span class="p">,</span><span class="n">mjson</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">mdict</span><span class="o">=</span><span class="n">newjson</span>
+    <span class="c1">#单引号改双引号</span>
+    <span class="c1">#mdict = str(newjson).replace(&#34;&#39;&#34;,&#34;\&#34;&#34;).replace(r&#34;\n&#34;,&#34;&#34;)</span>
+    
+    <span class="k">if</span> <span class="n">save_json</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdict</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span> <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># weights</span>
+        
+        <span class="n">pred_json</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">save_dir</span> <span class="o">/</span> <span class="n">f</span><span class="s2">&#34;{w}_predictions.json&#34;</span><span class="p">)</span>  <span class="c1"># predictions json</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Evaluating pycocotools mAP... saving </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">pred_json</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pred_json</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">mdict</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Done. ({time.time() - t0:.3f}s)&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--weights&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;/content/drive/MyDrive/run/train/exp2/weights/best098.pt&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;model.pt path(s)&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--source&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;/content/yolov5/data/images&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>  <span class="c1"># file/folder, 0 for webcam</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--img-size&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;inference size (pixels)&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--conf-thres&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;object confidence threshold&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--iou-thres&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;IOU threshold for NMS&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--max-det&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;maximum number of detections per image&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--device&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;cuda device, i.e. 0 or 0,1,2,3 or cpu&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--view-img&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;display results&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save-txt&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save results to *.txt&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save-json&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save results to json&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save-conf&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save confidences in --save-txt labels&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save-crop&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save cropped prediction boxes&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--nosave&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;do not save images/videos&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--classes&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;filter by class: --class 0, or --class 0 2 3&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--agnostic-nms&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;class-agnostic NMS&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--augment&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;augmented inference&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--update&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;update all models&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--project&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;runs/detect&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save results to project/name&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;exp&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save results to project/name&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--exist-ok&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;existing project/name ok, do not increment&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--line-thickness&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;bounding box thickness (pixels)&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--hide-labels&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;hide labels&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--hide-conf&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;hide confidences&#39;</span><span class="p">)</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
+    <span class="n">check_requirements</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tensorboard&#39;</span><span class="p">,</span> <span class="s1">&#39;pycocotools&#39;</span><span class="p">,</span> <span class="s1">&#39;thop&#39;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">update</span><span class="p">:</span>  <span class="c1"># update all models (to fix SourceChangeWarning)</span>
+            <span class="k">for</span> <span class="n">opt</span><span class="o">.</span><span class="n">weights</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;yolov5s.pt&#39;</span><span class="p">,</span> <span class="s1">&#39;yolov5m.pt&#39;</span><span class="p">,</span> <span class="s1">&#39;yolov5l.pt&#39;</span><span class="p">,</span> <span class="s1">&#39;yolov5x.pt&#39;</span><span class="p">]:</span>
+                <span class="n">detect</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+                <span class="n">strip_optimizer</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">detect</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
