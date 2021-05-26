@@ -70,3 +70,10 @@ ffmpeg -f gif -i test.gif test.mp4
 ```
 ffmpeg -i input.mov -an mute-output.mov
 ```
+
+- 将字幕和视频进行合并
+
+```bash
+ffmpeg -i video.mp4 -vf subtitles=subtitle.srt out.mp4
+```
+

@@ -674,7 +674,7 @@ names: [
 
 ```
 
-- 删除`/content/yolov5/train.py`,上传更改过的`train.py`
+- 修改`/content/yolov5/models/yolov5s.yaml`
 - 主要只更改了 `nc`的值
 
 ```yaml
@@ -729,7 +729,7 @@ head:
 
 ```
 
-- 删除`/content/yolov5/train.py`, 上传你更改过的`train.py`
+- 修改`/content/yolov5/train.py`,
 - 主要更改了以下内容
 ![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210519212553.png)
 - 将生成的结果文件夹路径设置为`谷歌云盘的`, 避免断开连接拿不到训练结果
