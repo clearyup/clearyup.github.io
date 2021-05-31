@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/imageai\/"
-        },"genre": "posts","keywords": "imageai","wordcount":  3843 ,
+        },"genre": "posts","keywords": "imageai","wordcount":  3976 ,
         "url": "https:\/\/clearyup.github.io\/posts\/imageai\/","datePublished": "2021-05-03T09:02:48+08:00","dateModified": "2021-05-03T09:02:48+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">ImageAi</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-03">2021-05-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3843 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-03">2021-05-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3976 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -655,10 +655,18 @@ dog  :  98.93686175346375  :  [503, 154, 638, 386]
 <p><strong>反向传播</strong>（英语：Backpropagation，缩写为BP）该方法计算对网络中所有权重计算损失函数的梯度。这个梯度会反馈给最优化方法，用来更新权值以最小化损失函数。 在神经网络上执行梯度下降法的主要算法。该算法会先按前向传播方式计算（并缓存）每个节点的输出值，然后再按反向传播遍历图的方式计算损失函数值相对于每个参数的偏导数。</p>
 </blockquote>
 <blockquote>
+<p><strong>反向传播</strong>主要思想</p>
+<ol>
+<li>将训练集数据传入<code>输入层</code>，经过<code>隐含层</code>，最后达到<code>输出层</code>并输出结果，这是<code>向前传播</code>的过程</li>
+<li>由于最后输出的结果和预期的结果有<code>误差</code>,需要将该误差从<code>输出层</code>向<code>隐含层</code>反向传播,直至传播至<code>输入层</code></li>
+<li>在<code>反向传播</code>的过程中,根据误差调整各种参数的值,使得<code>误差减小</code>,不断迭代上述过程</li>
+</ol>
+</blockquote>
+<blockquote>
 <p>假设我们现在需要计算一个函数$f(x,y,z)=(x+y)*z$ 在$x=-2,y=5,z=-4$的<code>梯度</code>,计算流程如下:</p>
 <ul>
 <li>
-<p>向前传播计算: $f(x=2,y=5,z=-4)$结果为-12</p>
+<p>向前传播计算: $f(x=-2,y=5,z=-4)$结果为-12</p>
 </li>
 <li>
 <p>反向传播计算: 令$q=x+y$</p>
@@ -670,7 +678,7 @@ dog  :  98.93686175346375  :  [503, 154, 638, 386]
 <p>${\frac {df}{dx}}={\frac {df}{dq}}\cdot{\frac {dq}{dx}}=z\cdot1=-4$</p>
 </li>
 <li>
-<p>${\frac {df}{dy}}={\frac {df}{dq}}\cdot{\frac {dq}{dx}}=z\cdot1=-4$</p>
+<p>${\frac {df}{dy}}={\frac {df}{dq}}\cdot{\frac {dq}{dy}}=z\cdot1=-4$</p>
 </li>
 </ul>
 </blockquote>
