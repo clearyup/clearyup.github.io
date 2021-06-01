@@ -10,6 +10,6 @@
     <pubDate>Mon, 31 May 2021 11:12:27 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/math/</guid>
-    <description><![CDATA[导数 概念 微分 积分]]></description>
+    <description><![CDATA[导数 什么是导数 导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为 $\Large f(x)^{'}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\Large dx\rightarrow 0$ 几]]></description>
 </item></channel>
 </rss>
