@@ -130,22 +130,26 @@ scoop install annie
 >node npm
 
 >[hugo](https://github.com/gohugoio/hugo/releases)
-
+## 字体
 >[Fira Code字体](https://github.com/tonsky/FiraCode/releases)
 
 
 >字体配置
 ```json
- "editor.fontFamily": "Fira Code",
+ "editor.fontFamily": "Fira Code Retina",
 
  "editor.fontLigatures": false, //不开启连字
 
- "editor.fontSize": 15,
+ "editor.fontSize": 16,
 
  "editor.fontWeight": "normal",
 ```
 
->[Noto Serif字体](https://www.google.com/get/noto/#serif-lgc)
+>[Noto Serif字体](https://www.google.com/get/noto/#serif-lgc)   
+
+
+>`Segoe Print`   `windows自带手写体`
+
 
 >[Mactype](https://mactype.net/)   
 
