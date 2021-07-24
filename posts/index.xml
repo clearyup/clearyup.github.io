@@ -4,7 +4,14 @@
         <link>https://clearyup.github.io/posts/</link>
         <description>所有文章 | clear</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
-            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Mon, 31 May 2021 11:12:27 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>c&#43;&#43;指针</title>
+    <link>https://clearyup.github.io/posts/pointer/</link>
+    <pubDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/pointer/</guid>
+    <description><![CDATA[指针和变量 变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后]]></description>
+</item><item>
     <title>导数微分和积分</title>
     <link>https://clearyup.github.io/posts/math/</link>
     <pubDate>Mon, 31 May 2021 11:12:27 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/software/</guid>
     <description><![CDATA[常用软件 Chrome Bandizip,防火墙设置拦截更新程序,U盘安装 7zip Snipaste githubClash,设置自动更新订阅 蓝奏云Clash mixin开启增强模]]></description>
-</item><item>
-    <title>英语语法框架</title>
-    <link>https://clearyup.github.io/posts/english/</link>
-    <pubDate>Sat, 17 Apr 2021 21:23:11 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://clearyup.github.io/posts/english/</guid>
-    <description><![CDATA[引言 首先我们需要知道,所有的英语语法都是为了造句.而且英语和中文一样,有结构简单的句子也有结构复杂的句子,那么我们到底怎么学语法? 其实所有的]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>c&#43;&#43; - 分类 - clear</title>
+        <link>https://clearyup.github.io/categories/c&#43;&#43;/</link>
+        <description>c&#43;&#43; - 分类 - clear</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>c&#43;&#43;指针</title>
+    <link>https://clearyup.github.io/posts/pointer/</link>
+    <pubDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/pointer/</guid>
+    <description><![CDATA[指针和变量 变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后]]></description>
+</item></channel>
+</rss>
