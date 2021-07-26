@@ -105,6 +105,7 @@ int main()
     int k = sum(a);
     cout << "sum=" << k << endl;
     cout << "a=" << a;
+	return 0;
 }
 
 
