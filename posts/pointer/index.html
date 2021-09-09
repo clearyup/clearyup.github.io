@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/pointer\/"
-        },"genre": "posts","keywords": "pointer","wordcount":  1805 ,
+        },"genre": "posts","keywords": "pointer","wordcount":  1766 ,
         "url": "https:\/\/clearyup.github.io\/posts\/pointer\/","datePublished": "2021-07-24T15:41:25+08:00","dateModified": "2021-07-24T15:41:25+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">c&#43;&#43;指针</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-24">2021-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1805 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-24">2021-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1766 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -124,6 +124,9 @@
             </div><div class="content" id="content"><h1 id="指针和变量">指针和变量</h1>
 <blockquote>
 <p>变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后变量名就绑定了数据,形成一种<code>映射</code>,输出变量名等于输出数据</p>
+</blockquote>
+<blockquote>
+<p>这种映射是由编译器实现的,实际上变量名也有物理上的地址,编译器通过这个地址找到这个地址对应的空间存放的数据</p>
 </blockquote>
 <blockquote>
 <p>变量理解为一个容器</p>
@@ -338,9 +341,9 @@ a=10</p>
 <h2 id="指针传递">指针传递</h2>
 <p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作</p>
 <h2 id="引用传递">引用传递</h2>
-<p>形参相当于是实参的“别名”，对形参的操作其实就是对实参的操作，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈</p>
-<p>中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。被调函数对形参的任何操作都被处理成间接寻址，即通过</p>
-<p>栈中存放的地址访问主调函数中的实参变量。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量</p>
+<p>形参相当于是实参的“别名”，对形参的操作其实就是对实参的操作</p>
+<p>在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址</p>
+<p>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量</p>
 <h2 id="指针传值和引用传值区别">指针传值和引用传值区别</h2>
 <blockquote>
 <p>程序在编译时分别将指针和引用添加到符号表上，符号表上记录的是变量名及变量所对应地址。指针变量在符号表上对应的地址值为指针变量的地址值，而引用在符号表上对应的地址值为引用对象的地址值。符号表生成后就不会再改，因此指针可以改变其指向的对象（指针变量中的值可以改），而引用对象则不能修改</p>
@@ -359,13 +362,13 @@ a=10</p>
 <p>引用只能在定义时被初始化一次，之后不可变；指针可变；引用“从一而终”，指针可以“见异思迁”；</p>
 </li>
 <li>
-<p>引用没有const，指针有const，const的指针不可变；（具体指没有int&amp; const a这种形式，而const int&amp; a是有     的，  前者指引用本身即别名不可以改变，这是当然的，所以不需要这种形式，后者指引用所指的值不可以改变）</p>
+<p>引用没有const，指针有const，const的指针不可变</p>
 </li>
 <li>
 <p>引用不能为空，指针可以为空；</p>
 </li>
 <li>
-<p>“sizeof 引用”得到的是所指向的变量(对象)的大小，而“sizeof 指针”得到的是指针本身的大小；</p>
+<p><code>sizeof 引用</code>得到的是所指向的变量(对象)的大小，而<code>sizeof 指针</code>得到的是指针本身的大小；</p>
 </li>
 <li>
 <p>指针和引用的自增(++)运算意义不一样；</p>
