@@ -3,7 +3,7 @@
 # 个人说明
 
 {{< admonition type=quote title="引言" open=ture >}}
-这是一个使用 hugo+ github pages + vervel搭建的个人静态博客,其实有很多其他的选择,但是hugo的静态页面构建速度是最快的,因此选择了hugo
+这是一个使用 hugo+ github pages + vercel搭建的个人静态博客,其实有很多其他的选择,但是hugo的静态页面构建速度是最快的,因此选择了hugo
 {{< /admonition >}}
 
 >下面是博客的介绍
