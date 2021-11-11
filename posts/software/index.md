@@ -2,6 +2,8 @@
 
 ## 常用软件
 >[Chrome](https://www.google.com/intl/zh-CN/chrome/)
+  
+>[Vavidal](https://vivaldi.com)
 
 >Bandizip,防火墙设置拦截更新程序,`U盘安装`   
 >[7zip](https://sparanoid.com/lab/7z/)    
