@@ -4,7 +4,7 @@
 ## 什么是导数
 >导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为   
 >
->$\Large f(x)^{'}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\Large dx\rightarrow 0$    
+>$\large f(x)^{'}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\large dx\rightarrow 0$    
 >  
 >几何上表示经过图像上某一点切线上的斜率   
 
