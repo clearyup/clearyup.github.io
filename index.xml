@@ -4,9 +4,16 @@
         <link>https://clearyup.github.io/</link>
         <description>hugo blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
-            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</lastBuildDate>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</lastBuildDate>
             <atom:link href="https://clearyup.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Golang</title>
+    <link>https://clearyup.github.io/posts/golang/</link>
+    <pubDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/golang/</guid>
+    <description><![CDATA[go语法特殊点 给新的短变量初始化时可使用:=来自动推导，一般在函数内部使用 变量数据交换可以直接a, b = b, a 代码行尾不需要分号 匿名变量下划线 _]]></description>
+</item><item>
     <title>c&#43;&#43;指针</title>
     <link>https://clearyup.github.io/posts/pointer/</link>
     <pubDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</pubDate>
@@ -19,7 +26,7 @@
     <pubDate>Mon, 31 May 2021 11:12:27 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/math/</guid>
-    <description><![CDATA[导数 什么是导数 导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为 $\small f(x)^{'}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\small dx\rightarrow 0$ 几]]></description>
+    <description><![CDATA[导数 什么是导数 导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为 $\small f(x)^{&rsquo;}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\small dx\rightarrow 0$ 几]]></description>
 </item><item>
     <title>YOLOv5训练自己的数据集</title>
     <link>https://clearyup.github.io/posts/yolo/</link>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/acid/</guid>
     <description><![CDATA[数据库的ACID原则 事务 事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系]]></description>
-</item><item>
-    <title>Software</title>
-    <link>https://clearyup.github.io/posts/software/</link>
-    <pubDate>Mon, 19 Apr 2021 17:28:21 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://clearyup.github.io/posts/software/</guid>
-    <description><![CDATA[常用软件 Chrome Vavidal Bandizip,防火墙设置拦截更新程序,U盘安装 7zip Snipaste githubClash,设置自动更新订阅 蓝奏云Clash mixin开启增强]]></description>
 </item></channel>
 </rss>

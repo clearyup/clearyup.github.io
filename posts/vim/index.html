@@ -8,14 +8,11 @@
         <title>Vim宏的使用 - clear</title><meta name="Description" content="hugo blog"><meta property="og:title" content="Vim宏的使用" />
 <meta property="og:description" content="vim宏的使用 使用vim的宏可以对单个文件或多个文件进行批量处理，这里记录使用宏的一个样例 我需要更改Annotations文件夹下的1426" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://clearyup.github.io/posts/vim/" /><meta property="og:image" content="https://clearyup.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-14T22:08:48&#43;08:00" />
-<meta property="article:modified_time" content="2021-05-14T22:08:48&#43;08:00" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://clearyup.github.io/logo.png"/>
-
-<meta name="twitter:title" content="Vim宏的使用"/>
+<meta property="og:url" content="https://clearyup.github.io/posts/vim/" /><meta property="og:image" content="https://clearyup.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-14T22:08:48+08:00" />
+<meta property="article:modified_time" content="2021-05-14T22:08:48+08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://clearyup.github.io/logo.png" /><meta name="twitter:title" content="Vim宏的使用"/>
 <meta name="twitter:description" content="vim宏的使用 使用vim的宏可以对单个文件或多个文件进行批量处理，这里记录使用宏的一个样例 我需要更改Annotations文件夹下的1426"/>
 <meta name="application-name" content="clear">
 <meta name="apple-mobile-web-app-title" content="clear"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -124,22 +121,22 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"> vim next *.xml
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> vim next *.xml
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>:bn进入下一个文件，:bp进入上一个文件,这里执行进入下一个文件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">:bn
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">:bn
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>开始录制宏,normal模式按下<code>q</code>再按<code>z</code>,就开始录制一个名字为<code>z</code>的宏</li>
@@ -147,11 +144,11 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/path
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/path
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -163,44 +160,44 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">cc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cc
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>在当前行输入你要替换的内容</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;path&gt;</span>C:\Users\y2010\Desktop\Annotations<span class="nt">&lt;/path&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;path&gt;</span>C:\Users\y2010\Desktop\Annotations<span class="nt">&lt;/path&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>保存</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">:w
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">:w
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>跳转到下一个文件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">bn
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bn
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>结束宏的录制,按下<code>q</code>
@@ -217,19 +214,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">:%s/^/<span class="se">\=</span>line<span class="o">(</span><span class="s1">&#39;.&#39;</span><span class="o">)</span>.<span class="s1">&#39; &#39;</span>         在每一行前面添加序号
-:sort /<span class="se">\d\+</span> /                 跳过序号，对文本本身进行排序（ 4.1 节）
-:g/^<span class="se">\d\+</span> <span class="se">\(</span>.*<span class="se">\)\n</span>^<span class="se">\d\+</span> <span class="se">\1</span>/d   把重复行去除（ 4.2 节）
-:sort n                       最后剩下的行按序号排列
-:%s/^<span class="se">\d\{</span>-<span class="o">}</span> //                把序号删除掉
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">:%s/^/<span class="se">\=</span>line<span class="o">(</span><span class="s1">&#39;.&#39;</span><span class="o">)</span>.<span class="s1">&#39; &#39;</span>         在每一行前面添加序号
+</span></span><span class="line"><span class="cl">:sort /<span class="se">\d\+</span> /                 跳过序号，对文本本身进行排序（ 4.1 节）
+</span></span><span class="line"><span class="cl">:g/^<span class="se">\d\+</span> <span class="se">\(</span>.*<span class="se">\)\n</span>^<span class="se">\d\+</span> <span class="se">\1</span>/d   把重复行去除（ 4.2 节）
+</span></span><span class="line"><span class="cl">:sort n                       最后剩下的行按序号排列
+</span></span><span class="line"><span class="cl">:%s/^<span class="se">\d\{</span>-<span class="o">}</span> //                把序号删除掉
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -248,7 +245,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">vim</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>

@@ -8,19 +8,16 @@
         <title>c&#43;&#43;指针 - clear</title><meta name="Description" content="hugo blog"><meta property="og:title" content="c&#43;&#43;指针" />
 <meta property="og:description" content="指针和变量 变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://clearyup.github.io/posts/pointer/" /><meta property="og:image" content="https://clearyup.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-24T15:41:25&#43;08:00" />
-<meta property="article:modified_time" content="2021-07-24T15:41:25&#43;08:00" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://clearyup.github.io/logo.png"/>
-
-<meta name="twitter:title" content="c&#43;&#43;指针"/>
+<meta property="og:url" content="https://clearyup.github.io/posts/pointer/" /><meta property="og:image" content="https://clearyup.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-24T15:41:25+08:00" />
+<meta property="article:modified_time" content="2021-07-24T15:41:25+08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://clearyup.github.io/logo.png" /><meta name="twitter:title" content="c&#43;&#43;指针"/>
 <meta name="twitter:description" content="指针和变量 变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后"/>
 <meta name="application-name" content="clear">
 <meta name="apple-mobile-web-app-title" content="clear"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://clearyup.github.io/posts/pointer/" /><link rel="prev" href="https://clearyup.github.io/posts/math/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://clearyup.github.io/posts/pointer/" /><link rel="prev" href="https://clearyup.github.io/posts/math/" /><link rel="next" href="https://clearyup.github.io/posts/golang/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/pointer\/"
-        },"genre": "posts","keywords": "pointer","wordcount":  1766 ,
+        },"genre": "posts","keywords": "pointer","wordcount":  1764 ,
         "url": "https:\/\/clearyup.github.io\/posts\/pointer\/","datePublished": "2021-07-24T15:41:25+08:00","dateModified": "2021-07-24T15:41:25+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -105,8 +102,8 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">c&#43;&#43;指针</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-24">2021-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1766 字&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-24">2021-07-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1764 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -167,33 +164,33 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
- <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>   
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>   
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>赋值语句初始化,这里不能<code>*p=a</code>,类型不匹配,<code>*</code>在这里不是类型是解引用</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
- <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
- <span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>错误的初始化方式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -209,21 +206,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//类型不匹配,int类型和int*类型,指针需要地址赋值
-</span><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
- <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
- 
- 
-<span class="c1">//类型不匹配
-</span><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
- <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
- <span class="n">p</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
- 
-<span class="c1">//*p是int类型,&amp;a是int *类型,不能赋值
-</span><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
- <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
- <span class="o">*</span><span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//类型不匹配,int类型和int*类型,指针需要地址赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//类型不匹配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="n">p</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//*p是int类型,&amp;a是int *类型,不能赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">*</span><span class="n">p</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="多级指针">多级指针</h1>
 <blockquote>
@@ -231,25 +228,23 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//表示 *p指针 p 只能存放int ***类型地址
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">****</span> <span class="n">p</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">**</span><span class="n">ppa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">pa</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">***</span><span class="n">pppa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ppa</span><span class="p">;</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//表示 *p指针 p 只能存放int ***类型地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">****</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">**</span><span class="n">ppa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">pa</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">***</span><span class="n">pppa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ppa</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="指针与数组">指针与数组</h1>
 <blockquote>
@@ -275,15 +270,15 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span>
-<span class="kt">void</span> <span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span>
-<span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span><span class="c1">//错误
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span><span class="c1">//错误
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="指向不同值时的地址">指向不同值时的地址</h1>
 <blockquote>
@@ -294,7 +289,7 @@
 <p>形参是实参的拷贝，改变形参的值并不会影响外部实参的值。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），参数的值只能传入,不能传出,当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -310,29 +305,25 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-<span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">x</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-
-    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sum=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;a=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sum=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;a=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>sum=18<br>
@@ -394,13 +385,14 @@ a=10</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/pointer/">pointer</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/pointer/">Pointer</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/math/" class="prev" rel="prev" title="导数微分和积分"><i class="fas fa-angle-left fa-fw"></i>导数微分和积分</a></div>
+    <div class="post-nav"><a href="/posts/math/" class="prev" rel="prev" title="导数微分和积分"><i class="fas fa-angle-left fa-fw"></i>导数微分和积分</a>
+            <a href="/posts/golang/" class="next" rel="next" title="Golang">Golang<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

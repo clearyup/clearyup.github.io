@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>database - 分类 - clear</title>
+        <title>Database - 分类 - clear</title>
         <link>https://clearyup.github.io/categories/database/</link>
-        <description>database - 分类 - clear</description>
+        <description>Database - 分类 - clear</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
             <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Wed, 21 Apr 2021 11:51:01 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/database/" rel="self" type="application/rss+xml" /><item>
     <title>ACID</title>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>math - 标签 - clear</title>
+        <title>Math - 标签 - clear</title>
         <link>https://clearyup.github.io/tags/math/</link>
-        <description>math - 标签 - clear</description>
+        <description>Math - 标签 - clear</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
             <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Mon, 31 May 2021 11:12:27 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/tags/math/" rel="self" type="application/rss+xml" /><item>
     <title>导数微分和积分</title>
@@ -10,6 +10,6 @@
     <pubDate>Mon, 31 May 2021 11:12:27 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://clearyup.github.io/posts/math/</guid>
-    <description><![CDATA[导数 什么是导数 导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为 $\small f(x)^{'}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\small dx\rightarrow 0$ 几]]></description>
+    <description><![CDATA[导数 什么是导数 导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为 $\small f(x)^{&rsquo;}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\small dx\rightarrow 0$ 几]]></description>
 </item></channel>
 </rss>

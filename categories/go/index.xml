@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - 分类 - clear</title>
+        <link>https://clearyup.github.io/categories/go/</link>
+        <description>Go - 分类 - clear</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/categories/go/" rel="self" type="application/rss+xml" /><item>
+    <title>Golang</title>
+    <link>https://clearyup.github.io/posts/golang/</link>
+    <pubDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://clearyup.github.io/posts/golang/</guid>
+    <description><![CDATA[go语法特殊点 给新的短变量初始化时可使用:=来自动推导，一般在函数内部使用 变量数据交换可以直接a, b = b, a 代码行尾不需要分号 匿名变量下划线 _]]></description>
+</item></channel>
+</rss>

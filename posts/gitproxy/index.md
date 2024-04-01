@@ -3,14 +3,11 @@
 # git设置
 
 
-
 通过设置git代理,你clone和push的操作处理速度会由20kb/s变成7.8Mb/s,因此有代理的设置这个很有必要
 
 {{< admonition type=failure title="注意!" open=ture >}}
 以后每次使用git命令或者git脚本记得代理是开启的
 {{< /admonition >}}
-
-
 
 ## 设置代理
 

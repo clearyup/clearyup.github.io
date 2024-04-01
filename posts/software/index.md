@@ -77,6 +77,7 @@ mixin:
 >[Obsidian](https://obsidian.md/)   Obsidian Nord主题  
 >[Notion](https://www.notion.so/)   
 >[picgo](https://github.com/Molunerfinn/PicGo/releases)
+>Scrivener + Scapple
 
 >[Capslock+](https://capslox.com/capslock-plus/)
 
@@ -95,7 +96,7 @@ mixin:
 
 >Vmware workstation `U盘安装`
 
->Termius `U盘安装`
+>Termius `U盘安装` 
 
 
 
@@ -134,6 +135,9 @@ scoop install annie
 >[hugo](https://github.com/gohugoio/hugo/releases)
 ## 字体
 >[Fira Code字体](https://github.com/tonsky/FiraCode/releases)
+> [sarasa-mono]()
+> [lxwk]()
+> LXGW Bright,Mulish,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
 
 
 >字体配置

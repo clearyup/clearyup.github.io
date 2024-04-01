@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>yolov5 - 标签 - clear</title>
+        <title>Yolov5 - 标签 - clear</title>
         <link>https://clearyup.github.io/tags/yolov5/</link>
-        <description>yolov5 - 标签 - clear</description>
+        <description>Yolov5 - 标签 - clear</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
             <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Sun, 16 May 2021 20:57:38 &#43;0800</lastBuildDate><atom:link href="https://clearyup.github.io/tags/yolov5/" rel="self" type="application/rss+xml" /><item>
     <title>YOLOv5训练自己的数据集</title>
