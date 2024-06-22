@@ -110,9 +110,7 @@ FontIsBold=no
 
 - 保留本地工作区的这个目录，从暂存区删除这个文件夹，这样就取消这个文件夹的关联了，没关联的文件加入.gitignore才会生效
 ```shell
-
 git rm --cached /tmp -r
-
 ```
 
 - 如果本地的也不需要保留,这会将工作区和暂存区的此目录取消关联、删除
@@ -136,19 +134,20 @@ git rm /tmp -r
 ```shell
 rm -rf .git
 ```
-``
+
 #### 步骤 2：重新初始化 Git 仓库
 
 重新初始化一个新的 Git 仓库：
 ```shell
 git init
 ```
-``
+
 #### 步骤 3：添加所有文件并进行首次提交
 
 添加所有文件并进行首次提交：
 ```shell
-git add . git commit -m "Initial commit after cleanup"
+git add .
+git commit -m "Initial commit after cleanup"
 ```
 
 #### 步骤 4：重新关联远程仓库
@@ -157,14 +156,14 @@ git add . git commit -m "Initial commit after cleanup"
 ```shell
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 ```
-``
+
 #### 步骤 5：强制推送到远程仓库
 
 将本地仓库的内容强制推送到远程仓库（这会覆盖远程仓库的所有内容）：
 ```shell
 git push --force origin master
 ```
-``
+
 
 ### 团队项目（最终的方案）
 
@@ -178,7 +177,7 @@ git clone /path/to/your/local/repository /path/to/your/backup/repository
 
 ```
 
-``
+
 #### 步骤 2：使用 `filter-branch` 移除目录 /tmp
 ```shell
 git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch tmp' --prune-empty --tag-name-filter cat -- --all
@@ -206,7 +205,7 @@ git gc --prune=now
 git gc --aggressive --prune=now
 
 ```
-``
+
 
 #### 步骤 4：强制推送修改到远程仓库
 
@@ -217,5 +216,5 @@ git push --force --all
 git push --force --tags
 
 ```
-``
+
 
