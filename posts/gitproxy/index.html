@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/clearyup.github.io\/posts\/gitproxy\/"
-        },"genre": "posts","keywords": "git","wordcount":  424 ,
+        },"genre": "posts","keywords": "git","wordcount":  1423 ,
         "url": "https:\/\/clearyup.github.io\/posts\/gitproxy\/","datePublished": "2021-04-12T08:57:01+08:00","dateModified": "2021-04-12T08:57:01+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Gitproxy</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="clearyup.github.io" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>@clear</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>Git</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-12">2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 424 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-12">2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1423 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -130,7 +130,31 @@
       </ul>
     </li>
     <li><a href="#设置换行处理">设置换行处理</a></li>
-    <li><a href="#git-bash配置">git bash配置</a></li>
+    <li><a href="#git-bash配置windows">git bash配置(windows)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#远程仓库和本地仓库的清理">远程仓库和本地仓库的清理</a>
+      <ul>
+        <li><a href="#个人项目粗糙的解决方法">个人项目（粗糙的解决方法）</a>
+          <ul>
+            <li><a href="#步骤-1删除本地-git-目录">步骤 1：删除本地 .git 目录</a></li>
+            <li><a href="#步骤-2重新初始化-git-仓库">步骤 2：重新初始化 Git 仓库</a></li>
+            <li><a href="#步骤-3添加所有文件并进行首次提交">步骤 3：添加所有文件并进行首次提交</a></li>
+            <li><a href="#步骤-4重新关联远程仓库">步骤 4：重新关联远程仓库</a></li>
+            <li><a href="#步骤-5强制推送到远程仓库">步骤 5：强制推送到远程仓库</a></li>
+          </ul>
+        </li>
+        <li><a href="#团队项目最终的方案">团队项目（最终的方案）</a>
+          <ul>
+            <li><a href="#步骤-1备份你的仓库">步骤 1：备份你的仓库</a></li>
+            <li><a href="#步骤-2使用-filter-branch-移除目录-tmp">步骤 2：使用 <code>filter-branch</code> 移除目录 /tmp</a></li>
+            <li><a href="#步骤-3清理和重新打包">步骤 3：清理和重新打包</a></li>
+            <li><a href="#步骤-4强制推送修改到远程仓库">步骤 4：强制推送修改到远程仓库</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="git设置">git设置</h1>
@@ -203,7 +227,7 @@
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git config --global core.autocrlf <span class="nb">false</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="git-bash配置">git bash配置</h2>
+</div><h2 id="git-bash配置windows">git bash配置(windows)</h2>
 <p>在 <code>C:\Users\y2010\.minttyrc</code>中修改</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -295,7 +319,162 @@
 </span></span><span class="line"><span class="cl">FontIsBold=no
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h1 id="git删除仓库历史中的文件">git删除仓库历史中的文件</h1>
+<blockquote>
+<p>有这样的场景，在使用git进行代码push的时候，不小心把本地的编译好的可执行文件或者一些忘记加入到.gitignore的文件也上传到远程仓库，如何解决呢？</p>
+</blockquote>
+<ul>
+<li>保留本地工作区的这个目录，从暂存区删除这个文件夹，这样就取消这个文件夹的关联了，没关联的文件加入.gitignore才会生效</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git rm --cached /tmp -r
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果本地的也不需要保留,这会将工作区和暂存区的此目录取消关联、删除</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git rm /tmp -r
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>接下来你只需要重新提交代码到仓库并push到远程仓库就OK</li>
+</ul>
+<h2 id="远程仓库和本地仓库的清理">远程仓库和本地仓库的清理</h2>
+<ul>
+<li>上面的步骤执行完了后，真的ok了吗？其实没有，这个文件依然存在于你的.git本地和远程仓库里的历史版本，只是当前最新版本没有这个文件罢了</li>
+</ul>
+<p>因此如果这个文件确认是不需要进行版本管理的文件，而且是错误的加入到了git仓库管理，那么为了仓库的容量大小和避免所有pull的人都拉取这样没有意义的文件，我们需要在本地仓库和远程仓库彻底清理这样的文件</p>
+<p>以下有两种方案，如果是个人项目，不关心历史提交的版本和tag之类的，直接删除本地仓库.git,重新git init再强制推送就行，如果是团队项目就用下面的那种，从所有提交历史中删除要的文件夹</p>
+<h3 id="个人项目粗糙的解决方法">个人项目（粗糙的解决方法）</h3>
+<h4 id="步骤-1删除本地-git-目录">步骤 1：删除本地 .git 目录</h4>
+<p>首先，在项目根目录中删除 <code>.git</code> 目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">rm -rf .git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h4 id="步骤-2重新初始化-git-仓库">步骤 2：重新初始化 Git 仓库</h4>
+<p>重新初始化一个新的 Git 仓库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h4 id="步骤-3添加所有文件并进行首次提交">步骤 3：添加所有文件并进行首次提交</h4>
+<p>添加所有文件并进行首次提交：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git add . git commit -m <span class="s2">&#34;Initial commit after cleanup&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="步骤-4重新关联远程仓库">步骤 4：重新关联远程仓库</h4>
+<p>将新的本地仓库与远程仓库关联：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h4 id="步骤-5强制推送到远程仓库">步骤 5：强制推送到远程仓库</h4>
+<p>将本地仓库的内容强制推送到远程仓库（这会覆盖远程仓库的所有内容）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push --force origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h3 id="团队项目最终的方案">团队项目（最终的方案）</h3>
+<p>下面是使用 <code>filter-branch</code> 从历史记录中移除 <code>/tmp</code> 目录的步骤：</p>
+<h4 id="步骤-1备份你的仓库">步骤 1：备份你的仓库</h4>
+<p>首先，备份你的仓库，以防任何操作出现问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone /path/to/your/local/repository /path/to/your/backup/repository
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h4 id="步骤-2使用-filter-branch-移除目录-tmp">步骤 2：使用 <code>filter-branch</code> 移除目录 /tmp</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git filter-branch --force --index-filter <span class="s1">&#39;git rm -r --cached --ignore-unmatch tmp&#39;</span> --prune-empty --tag-name-filter cat -- --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解释：</p>
+<ul>
+<li><code>--force</code> 强制重写。</li>
+<li><code>--index-filter</code> 运行一个命令以更新每个提交的索引。</li>
+<li><code>git rm -r --cached --ignore-unmatch /tmp</code> 从索引中删除 <code>/tmp</code> 目录。</li>
+<li><code>--prune-empty</code> 删除所有没有文件变化的提交。</li>
+<li><code>--tag-name-filter cat</code> 保持标签名称不变。</li>
+<li><code>-- --all</code> 应用于所有分支。</li>
+</ul>
+<h4 id="步骤-3清理和重新打包">步骤 3：清理和重新打包</h4>
+<p>在重写历史后，运行以下命令以清理和重新打包 Git 仓库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rm -rf .git/refs/original
+</span></span><span class="line"><span class="cl">git reflog expire --expire<span class="o">=</span>now --all
+</span></span><span class="line"><span class="cl">git gc --prune<span class="o">=</span>now
+</span></span><span class="line"><span class="cl">git gc --aggressive --prune<span class="o">=</span>now
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+<h4 id="步骤-4强制推送修改到远程仓库">步骤 4：强制推送修改到远程仓库</h4>
+<p>由于历史已经被重写，你需要强制推送这些更改到远程仓库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git push --force --all
+</span></span><span class="line"><span class="cl">git push --force --tags
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

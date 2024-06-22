@@ -192,3 +192,7 @@ ipconfig /flushdns  :: 清除本地DNS缓存
 >||google.com.hk$script
 ![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/20210501220148.png)
 
+- vscode
+```shell
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```

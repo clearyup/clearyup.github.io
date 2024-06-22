@@ -115,6 +115,17 @@ git push -u origin master
 
 最后用户名.github.io访问你的网站
 
+## 设置图床
+
+博客中的图片如果使用本地目录的图片，在进行迁移或者最后生成静态博客都不方便，因此这里使用picgo来使用github的仓库作为图片存储的地方，通过jsDelivr加速访问仓库的图片，可以让我们的博客和图片分离，内容也不会丢失
+
+### 设置步骤
+- 下载picgo
+- 生成github仓库访问的密钥
+- picgo设置
+![](https://cdn.jsdelivr.net/gh/clearyup/picgo/img/202404040028625.png)
+
+
 ## 部署到Vercel
 部署到vercel后网站拥有cdn加速,当你用git推送新文章到github仓库,vercel会帮你重新发布新页面,网站刷新后就可以看到新页面的内容   
 
