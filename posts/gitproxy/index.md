@@ -180,7 +180,7 @@ git clone /path/to/your/local/repository /path/to/your/backup/repository
 
 #### 步骤 2：使用 `filter-branch` 移除目录 /tmp
 ```shell
-git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch tmp' --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch ./tmp/*' --prune-empty --tag-name-filter cat -- --all
 
 ```
 
