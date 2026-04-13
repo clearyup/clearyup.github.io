@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flask on clear</title>
+    <link>https://clearyup.github.io/tags/flask/</link>
+    <description>Recent content in Flask on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Thu, 13 May 2021 11:27:37 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flask</title>
+      <link>https://clearyup.github.io/2021/05/flask/</link>
+      <pubDate>Thu, 13 May 2021 11:27:37 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/05/flask/</guid>
+      <description>&lt;h1 id=&#34;flask搭建web应用&#34;&gt;flask搭建web应用&lt;/h1&gt;&#xA;&lt;h2 id=&#34;应用简介&#34;&gt;应用简介&lt;/h2&gt;&#xA;&lt;p&gt;这是一个目标检测系统,登录成功后,菜单栏有4个功能,图像预测,图像检测,图像分割,视频中的目标检测,主要使用 python 的 flask web框架 和 imageai目标检测库&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

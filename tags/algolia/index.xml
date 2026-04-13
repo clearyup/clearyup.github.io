@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algolia on clear</title>
+    <link>https://clearyup.github.io/tags/algolia/</link>
+    <description>Recent content in Algolia on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Tue, 13 Apr 2021 21:28:14 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/algolia/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algolia</title>
+      <link>https://clearyup.github.io/2021/04/algolia/</link>
+      <pubDate>Tue, 13 Apr 2021 21:28:14 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/04/algolia/</guid>
+      <description>&lt;h1 id=&#34;algolia配置&#34;&gt;algolia配置&lt;/h1&gt;&#xA;&lt;p&gt;博客本身支持lunr和algolia两种搜索引擎,为了高性能和网站加载速度我选择algolia&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;lunr无需同步&lt;strong&gt;index.json&lt;/strong&gt;文件,但是lunr需要加载本地js文件,这会使得网站加载缓慢,并且性能低(需要检索中文时需要一个较大的分词依赖库)&lt;/li&gt;&#xA;&lt;li&gt;algolia,高性能占用带宽低,网站加载快,配置麻烦,更新网站需要同步&lt;strong&gt;index.json&lt;/strong&gt;文件&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;配置步骤&#34;&gt;配置步骤&lt;/h2&gt;&#xA;&lt;h3 id=&#34;第一步&#34;&gt;第一步&lt;/h3&gt;&#xA;&lt;p&gt;你需要在algolia官网注册,并create一个新的app,然后在你的hugo config.toml文件中配置algolia&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACID on clear</title>
+    <link>https://clearyup.github.io/tags/acid/</link>
+    <description>Recent content in ACID on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Wed, 21 Apr 2021 11:51:01 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/acid/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ACID</title>
+      <link>https://clearyup.github.io/2021/04/acid/</link>
+      <pubDate>Wed, 21 Apr 2021 11:51:01 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/04/acid/</guid>
+      <description>&lt;h1 id=&#34;数据库的acid原则&#34;&gt;数据库的ACID原则&lt;/h1&gt;&#xA;&lt;h2 id=&#34;事务&#34;&gt;事务&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系统本身的需要,&lt;code&gt;事务用来确保不论发生任何情况,数据始终处于一个合理的状态&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
