@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ffmpeg on clear</title>
+    <link>https://clearyup.github.io/tags/ffmpeg/</link>
+    <description>Recent content in Ffmpeg on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Mon, 26 Apr 2021 20:24:54 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FFmpeg安装使用</title>
+      <link>https://clearyup.github.io/2021/04/ffmpeg/</link>
+      <pubDate>Mon, 26 Apr 2021 20:24:54 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/04/ffmpeg/</guid>
+      <description>&lt;h1 id=&#34;ffmpeg&#34;&gt;FFmpeg&lt;/h1&gt;&#xA;&lt;p&gt;FFmpeg是一套可以用来记录转换数字音频,视频，并能将其转换为流的开源计算机程序&lt;/p&gt;&#xA;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;从github仓库下载&lt;a href=&#34;https://github.com/BtbN/FFmpeg-Builds/releases&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;FFmpeg&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;解压后将bin目录加载到系统path路径&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

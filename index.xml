@@ -1,0 +1,194 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>clear</title>
+        <link>https://clearyup.github.io/</link>
+        <description>hugo blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2010059016@qq.com (@clear)</managingEditor>
+            <webMaster>2010059016@qq.com (@clear)</webMaster><lastBuildDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</lastBuildDate>
+            <atom:link href="https://clearyup.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Golang</title>
+    <link>https://clearyup.github.io/2022/12/golang/</link>
+    <pubDate>Fri, 09 Dec 2022 16:16:32 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2022/12/golang/</guid>
+    <description><![CDATA[<h1 id="go语法特殊点">go语法特殊点</h1>
+<ul>
+<li>给新的短变量初始化时可使用:=来自动推导，一般在函数内部使用</li>
+<li>变量数据交换可以直接a, b = b, a</li>
+<li>代码行尾不需要分号</li>
+<li>匿名变量下划线 _ 比如函数定义时是返回两个值的，你使用时只需要返回一个，第二个就可以用下划线，常用于数据库返回的数据处理丢弃不需要的数据</li>
+<li>局部变量和全局变量，打印结果时，就近原则</li>
+<li>特殊常量iota，使用const定义常量用iota赋值时，第一次是0，多一个常量开始依次加1，没有赋值的常量默认用上一行的常量值初始化</li>
+<li>switch的fallthrough关键字可以强制执行后面的case语句，不会判断下一条case语句是否为true</li>
+<li>函数可变参数，例如arg&hellip; int表示函数接收若干个int类型的参数</li>
+<li>用defer关键字延迟一个函数的执行，一个defer会让函数最后执行，多个defer，先定义的defer会进入栈底，后定义的defer会在栈顶，然后出栈</li>
+<li>匿名函数自己调用自己，函数定义后面加两个小括号就行</li>
+<li>回调函数，将一个函数作为另一个函数的参数</li>
+<li>闭包函数，一个外层函数中，有内层函数，该内层函数中，会操作外层函数的局部变量，并且该外层函数的返回值就是这个内层函数。这个内层函数和外层函数的局部变量，称为闭包结构，这时局部变量的生命周期会发生改变，正常的局部变量会随着函数的调用而创建，随着函数的结束而销毁，但是闭包结构中的外层函数的局部变量并不会随着外层函数的结束而销毁，因为内层函数还在继续使用</li>
+<li>if中定义的局部变量在else中也可以使用</li>
+<li>指向结构体的指针访问成员应该是 (* p). user,但是可以简写为p.user, 隐式间接访问</li>
+</ul>
+<h1 id="go语法不同点">go语法不同点</h1>
+<ul>
+<li>程序从main包开始执行</li>
+<li>每个包都有一个init函数来初始化包，main包有一个init函数和main函数，程序执行时先从main包import的包开始加载，要加载的包init函数执行完后回调，程序结构是一个main包一个main函数是程序入口，其他包import到main包里</li>
+<li>slice切片，动态数组，没有大小的数组，可以随着元素追加改变容量大小</li>
+<li>slice切片传递的是数组的指针，是按引用传递，普通数组是按照值传递的，传递的是一份副本，不会更改原数据</li>
+<li>slice切片零值是nil，nil切片的长度和容量为0且没有底层数组，slice切片有len和cap，长度和容量，每次容量满了会将容量扩大一倍</li>
+<li>map，var r map[int]string表示key是int类型，value是string类型的键值对</li>
+<li>如果类名（结构体）大写，那么其他包也可以调用这个类，小写就是包内使用</li>
+<li>继承直接在子类中写父类的类名就可以继承父类的方法和成员</li>
+<li>多态是用interface实现的，interface本质是一个指针</li>
+<li>万能类型空接口interface{ }，常用基本数据类型都实现了interface{ }，为了区分引用的底层数据类型是什么，go给interface提供了类型断言机制</li>
+<li>变量的内置结构pair，变量包含type和value的一对pair结构，通过类型断言可以反向推导，反射就是通过pair结构，能通过type和value某一个反射出另一个。也可以使用反向单引号对结构体属性打标签，通过反射可以获取到tag，主要用于json数据结构体</li>
+<li>goroutine协程，进程切换是有成本的，使用协程切换成本小</li>
+</ul>]]></description>
+</item>
+<item>
+    <title>c&#43;&#43;指针</title>
+    <link>https://clearyup.github.io/2021/07/pointer/</link>
+    <pubDate>Sat, 24 Jul 2021 15:41:25 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/07/pointer/</guid>
+    <description><![CDATA[<h1 id="指针和变量">指针和变量</h1>
+<blockquote>
+<p>变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后变量名就绑定了数据,形成一种<code>映射</code>,输出变量名等于输出数据</p>]]></description>
+</item>
+<item>
+    <title>导数微分和积分</title>
+    <link>https://clearyup.github.io/2021/05/math/</link>
+    <pubDate>Mon, 31 May 2021 11:12:27 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/05/math/</guid>
+    <description><![CDATA[<h1 id="导数">导数</h1>
+<h2 id="什么是导数">什么是导数</h2>
+<blockquote>
+<p>导数是函数值改变值比上自变量改变值,衡量的是变化率,是自变量的变化引起的函数的变化率,表示为</p>
+<p>$\small f(x)^{&rsquo;}=\frac{df}{dx}=\frac{f(x+dx)-f(x)}{dx}$ ,并强调是$\small dx\rightarrow 0$</p>
+<p>几何上表示经过图像上某一点切线上的斜率</p>]]></description>
+</item>
+<item>
+    <title>YOLOv5训练自己的数据集</title>
+    <link>https://clearyup.github.io/2021/05/yolo/</link>
+    <pubDate>Sun, 16 May 2021 20:57:38 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/05/yolo/</guid>
+    <description><![CDATA[<h1 id="yolov5炼丹">YOLOv5炼丹</h1>
+<blockquote>
+<p>yolo目标检测算法是<code>you only look once</code>,图片只需要被检测一次就可以出结果</p>
+</blockquote>
+<h2 id="voc数据集转换为yolo数据集格式">VOC数据集转换为Yolo数据集格式</h2>
+<blockquote>
+<p>windows系统</p>
+</blockquote>
+<ul>
+<li>images 里面存放的是训练图片, labels_voc 里面存放的是 .xml (标签)，labels里面存放的是*.txt(转换后的标签),  classes.names 存放所有分类名字， 每行一个类别</li>
+</ul>
+<p></p>]]></description>
+</item>
+<item>
+    <title>Vim宏的使用</title>
+    <link>https://clearyup.github.io/2021/05/vim/</link>
+    <pubDate>Fri, 14 May 2021 22:08:48 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/05/vim/</guid>
+    <description><![CDATA[<h1 id="vim宏的使用">vim宏的使用</h1>
+<p>使用vim的宏可以对单个文件或多个文件进行批量处理，这里记录使用宏的一个样例</p>
+<blockquote>
+<p>我需要更改Annotations文件夹下的1426个xml中的path标签将其中的路径改为自己的，手动更改1426次是不敢想的事情，这里使用vim宏进行处理</p>]]></description>
+</item>
+<item>
+    <title>Flask</title>
+    <link>https://clearyup.github.io/2021/05/flask/</link>
+    <pubDate>Thu, 13 May 2021 11:27:37 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/05/flask/</guid>
+    <description><![CDATA[<h1 id="flask搭建web应用">flask搭建web应用</h1>
+<h2 id="应用简介">应用简介</h2>
+<p>这是一个目标检测系统,登录成功后,菜单栏有4个功能,图像预测,图像检测,图像分割,视频中的目标检测,主要使用 python 的 flask web框架 和 imageai目标检测库</p>]]></description>
+</item>
+<item>
+    <title>ImageAi</title>
+    <link>https://clearyup.github.io/2021/05/imageai/</link>
+    <pubDate>Mon, 03 May 2021 09:02:48 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/05/imageai/</guid>
+    <description><![CDATA[<h1 id="imageai">ImageAi</h1>
+<p>image是一个python库，用于图像预测，对象检测，视频对象检测和视频对象跟踪</p>
+<h2 id="运行imageai">运行ImageAi</h2>
+<h3 id="winsdows所需环境">winsdows所需环境</h3>
+<ul>
+<li>
+<p><strong>Python</strong> 3.7.6 , <a href="https://www.python.org/downloads/release/python-376//" target="_blank" rel="noopener noreffer ">Download Python</a></p>
+</li>
+<li>
+<p><strong>pip</strong> , <a href="https://pypi.python.org/pypi/pip/" target="_blank" rel="noopener noreffer ">Download pip</a></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m pip install --upgrade pip
+</span></span><span class="line"><span class="cl">pip config <span class="nb">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>Tensorflow</strong> 2.4.0-CPU</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install <span class="nv">tensorflow</span><span class="o">==</span>2.4.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or <strong>Tensorflow-GPU</strong> if you have a <code>NVIDIA GPU</code> with <code>CUDA</code> and <code>cuDNN</code> installed</p>]]></description>
+</item>
+<item>
+    <title>FFmpeg安装使用</title>
+    <link>https://clearyup.github.io/2021/04/ffmpeg/</link>
+    <pubDate>Mon, 26 Apr 2021 20:24:54 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/04/ffmpeg/</guid>
+    <description><![CDATA[<h1 id="ffmpeg">FFmpeg</h1>
+<p>FFmpeg是一套可以用来记录转换数字音频,视频，并能将其转换为流的开源计算机程序</p>
+<h2 id="安装">安装</h2>
+<ul>
+<li>
+<p>从github仓库下载<a href="https://github.com/BtbN/FFmpeg-Builds/releases" target="_blank" rel="noopener noreffer ">FFmpeg</a></p>
+</li>
+<li>
+<p>解压后将bin目录加载到系统path路径</p>]]></description>
+</item>
+<item>
+    <title>英语从句</title>
+    <link>https://clearyup.github.io/2021/04/subordinate/</link>
+    <pubDate>Fri, 23 Apr 2021 17:59:46 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/04/subordinate/</guid>
+    <description><![CDATA[<h1 id="英语从句">英语从句</h1>
+<p>英语的所有句子都由简单句组成，除单独的简单句外，还能将简单句进行两种组合</p>
+<ul>
+<li>并列关系组合（Compound Sentence）</li>
+<li>主从关系组合（Complex Sentence）</li>
+</ul>
+<p>在主，<code>谓</code>，宾，表，定，状，补，同位语中，除谓语外其他句子成分都可以用简单句构成从句</p>]]></description>
+</item>
+<item>
+    <title>ACID</title>
+    <link>https://clearyup.github.io/2021/04/acid/</link>
+    <pubDate>Wed, 21 Apr 2021 11:51:01 &#43;0800</pubDate>
+    <author>@clear</author>
+    <guid>https://clearyup.github.io/2021/04/acid/</guid>
+    <description><![CDATA[<h1 id="数据库的acid原则">数据库的ACID原则</h1>
+<h2 id="事务">事务</h2>
+<blockquote>
+<p>事务是一系列对系统中数据进行访问或更新的操作所组成的一个程序执行逻辑单元(Unit).为应用层服务的,而不是数据库系统本身的需要,<code>事务用来确保不论发生任何情况,数据始终处于一个合理的状态</code></p>]]></description>
+</item>
+</channel>
+</rss>

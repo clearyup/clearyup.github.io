@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imageai on clear</title>
+    <link>https://clearyup.github.io/tags/imageai/</link>
+    <description>Recent content in Imageai on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Mon, 03 May 2021 09:02:48 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/imageai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ImageAi</title>
+      <link>https://clearyup.github.io/2021/05/imageai/</link>
+      <pubDate>Mon, 03 May 2021 09:02:48 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/05/imageai/</guid>
+      <description>&lt;h1 id=&#34;imageai&#34;&gt;ImageAi&lt;/h1&gt;&#xA;&lt;p&gt;image是一个python库，用于图像预测，对象检测，视频对象检测和视频对象跟踪&lt;/p&gt;&#xA;&lt;h2 id=&#34;运行imageai&#34;&gt;运行ImageAi&lt;/h2&gt;&#xA;&lt;h3 id=&#34;winsdows所需环境&#34;&gt;winsdows所需环境&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt; 3.7.6 , &lt;a href=&#34;https://www.python.org/downloads/release/python-376//&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Download Python&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;pip&lt;/strong&gt; , &lt;a href=&#34;https://pypi.python.org/pypi/pip/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Download pip&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python -m pip install --upgrade pip&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip config &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; global.index-url https://pypi.tuna.tsinghua.edu.cn/simple&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tensorflow&lt;/strong&gt; 2.4.0-CPU&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install &lt;span class=&#34;nv&#34;&gt;tensorflow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;2.4.0&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;or &lt;strong&gt;Tensorflow-GPU&lt;/strong&gt; if you have a &lt;code&gt;NVIDIA GPU&lt;/code&gt; with &lt;code&gt;CUDA&lt;/code&gt; and &lt;code&gt;cuDNN&lt;/code&gt; installed&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

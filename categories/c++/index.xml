@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on clear</title>
+    <link>https://clearyup.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Sat, 24 Jul 2021 15:41:25 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c&#43;&#43;指针</title>
+      <link>https://clearyup.github.io/2021/07/pointer/</link>
+      <pubDate>Sat, 24 Jul 2021 15:41:25 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/07/pointer/</guid>
+      <description>&lt;h1 id=&#34;指针和变量&#34;&gt;指针和变量&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;变量实际就是内存中分配出来的一块存储空间,变量类型确定了分配多少字节以及空间里存放什么类型的数据,然后就可以存放对应类型数据,之后变量名就绑定了数据,形成一种&lt;code&gt;映射&lt;/code&gt;,输出变量名等于输出数据&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

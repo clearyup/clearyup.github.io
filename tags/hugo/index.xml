@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on clear</title>
+    <link>https://clearyup.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on clear</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2010059016@qq.com (@clear)</managingEditor>
+    <webMaster>2010059016@qq.com (@clear)</webMaster>
+    <lastBuildDate>Fri, 16 Apr 2021 21:32:43 +0800</lastBuildDate>
+    <atom:link href="https://clearyup.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 建站</title>
+      <link>https://clearyup.github.io/2021/04/hugo/</link>
+      <pubDate>Fri, 16 Apr 2021 21:32:43 +0800</pubDate><author>2010059016@qq.com (@clear)</author>
+      <guid>https://clearyup.github.io/2021/04/hugo/</guid>
+      <description>&lt;h1 id=&#34;使用hugo搭建网站&#34;&gt;使用hugo搭建网站&lt;/h1&gt;&#xA;&lt;p&gt;首先,这里介绍一下传统的网站搭建,你需要的是&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一台服务器(一般是阿里云之类的云服务器,搭载的是Linux系统)&lt;/li&gt;&#xA;&lt;li&gt;一个开源的网站框架或者模板(或选择自己开发网站前后端)&lt;/li&gt;&#xA;&lt;li&gt;一个网站域名(域名国内需要备案,配置后域名可以访问网站,或者不用域名直接服务器公网ip访问网站)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;你通过对云服务器进行端口,防火墙,ssh等一些配置,安装数据库,tomcat等软件后,将开源网站框架部署到云服务器上,域名可选或不选,这里你通过云服务器的公网ip就可以访问到网站,有域名将域名指向网站,添加dns解析就可以通过域名访问网站.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
